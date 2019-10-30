@@ -1,0 +1,10 @@
+npx webpack --config my.custom.config.webpack.js
+
+default file name : webpack.config.js
+npx webpack
+
+if webpack not installed globally then use ./node_modules/.bin/webpack  to run webpack
+else directly run webpack
+
+
+install first webpack and webpack-cli

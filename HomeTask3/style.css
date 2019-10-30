@@ -77,11 +77,14 @@ Select{
   align-content: center;
 }
 
-.form-inline {  
+.form-inline {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  width: 310px;
+  /* width: 100%; */
+  /* right: 0px; */
+  /* margin: 0 0px 10px 0; */
+  /* padding-right: 0; */
 }
 .form-inline input {
   vertical-align: middle;
@@ -89,12 +92,12 @@ Select{
   padding: 12px 9px;
   background-color: #fff;
   border: 1px solid rgb(138, 134, 134);
-  width: auto;
+  width: 50%;
 }
 
 .form-inline button {
   padding: 13px 5%;
   background-color: black;
   color: white;
-  width: 37%;
+  width: 40%;
 }

@@ -80,7 +80,7 @@ var loadElement = (data)=>{
         //image 
         let storywall = document.createElement("img"); 
         storywall.className= "rest";
-        storywall.src='../Resources/pallet.png';
+        storywall.src='./assets/pallet.png';
         storywall.style.margin="10px";
         storywall.style.marginRight="15px";
         storywall.setAttribute('width', '80px');

@@ -1,3 +1,6 @@
+>> npx is a package runner for npm V5.2+=
+
+
 npx webpack --config my.custom.config.webpack.js
 
 default file name : webpack.config.js
@@ -8,3 +11,19 @@ else directly run webpack
 
 
 install first webpack and webpack-cli
+
+@babel/preset-env provides some rules for transformations based on some standards.
+and make compatible to multiple browsers.
+
+"build": "./node_modules/.bin/webpack -w" in script
+make 'npm run build' to run above command
+
+
+
+webpack-dev-server ==== creates no dist file directly run on browser;
+webpack-cli,webpack ==== webpack default libraries
+style-loader, css-loader ==== loader of styles
+url-loader ==== loader of urls/ files path
+babel-loader ==== loader of babel
+@babel/preset-env ==== standard traspiling environment
+@babel/core ==== main babel package

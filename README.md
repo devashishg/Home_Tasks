@@ -1,21 +1,15 @@
 # HomeTasks
 
-**Resources :**
-> pallet.png 
-
+*Branches*
 
 **Home Task1 :**
 
-> index.html / style.css 
+> index.html | style.css 
 
 **Home Task2 :**
 
-> index.html / style.css / file.json / index.js 
+> index.html | style.css | file.json | index.js 
 
 **Home Task3 :**
 
-> index.html / style.css / Services.js / index.js 
-
-./Modals
-
-./Views
+> index.html | ./style/style.css | ./src/Services.js | ./src/index.js | ./src/Modal/Article.js |./src/Modal/source.js |./src/Views/ArticleView.js |./src/Views/Modal.js |./src/Views/SideBar.js

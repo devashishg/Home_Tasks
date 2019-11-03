@@ -5,46 +5,36 @@ export let createSideBar = (main) => {
     let form = document.createElement("form");
     form.setAttribute('action', '#');
     form.className = 'rest';
-    form.style.paddingLeft = '3%';
+    form.style.paddingLeft = '2%';
     form.style.paddingTop = '5%';
+    form.style.paddingRight = '2%';
 
-    let selectTitle = document.createElement('span');
-    selectTitle.innerHTML = '<h3>SELECT AUTHOR</h3>';
-    selectTitle.style.float = 'center';
-    form.appendChild(selectTitle);
-
-    //select Field
-
-    let select = document.createElement('Select');
-    let option = document.createElement('Option');
-    option.setAttribute('value', 'All');
-    option.innerHTML = 'All';
-    select.appendChild(option);
+    let formContent = `<span><h3>SELECT AUTHOR</h3></span>
+    <select name="category">
+    <option value="All">All</option>`;
     set.forEach((i) => {
-        let option = document.createElement('Option');
-        option.setAttribute('value', i);
-        option.innerHTML = i;
-        select.appendChild(option);
+        if (!(i)) {
+            formContent += `<option value="${i}">Unknown</option>`;
+        } else {
+            formContent += `<option value="${i}">${i}</option>`;
+        }
     });
-    select.setAttribute('name', 'category');
-    select.addEventListener('change', () => { filter(this); })
-    //select.setAttribute('onchange',`filter(this)`);
-    form.appendChild(select);
+    formContent += `</select>`;
+    form.innerHTML = formContent;
 
     //Subscribe Button and field
     main.appendChild(form);
+    let selector = document.getElementsByTagName('select')[0];
+    selector.addEventListener('change', () => {filter(selector); });
 }
 
-
-
-
 //Filter feeds based on Category
-let filter = (obj) => {
+export let filter = (obj) => {
     var obj = document.getElementsByName('category');
     let str = obj[0].value;
     var elements = document.querySelectorAll('.hundred');
     for (let j = 0; j < elements.length; j++) {
-        if (elements[j].childNodes[1].childNodes[1].innerHTML.split('is ')[1] != str && str != 'All') {
+        if (elements[j].children[1].children[1].innerHTML.split('is ')[1] != str && str != 'All') {
             elements[j].style.display = 'none';
         } else {
             elements[j].style.display = 'flex';

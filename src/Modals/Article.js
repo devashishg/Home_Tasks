@@ -1,5 +1,3 @@
-import { load } from '../Views/Modal.js';
-
 export class Article {
     constructor(articleObj) {
         this.author = articleObj.author;
@@ -51,49 +49,17 @@ export class Article {
 
 
     createView = (ind, ArticlesLength) => {
-        //Story Elements e.g. title, description etc 
-        let titleText = document.createElement("h1");
-        let timeCatText = document.createElement("small");
-        let Descr = document.createElement("p");
-        let readMore = document.createElement("button");
-        readMore.className = "button1";
-        readMore.innerHTML = "Continue Reading";
-        readMore.id = `${ind}`;
-        readMore.addEventListener('click', () => { load(ind); })
-        // readMore.setAttribute('onclick', () => load(ind));
 
-
-        //Json Data Filling 
-        titleText.innerHTML = `${this.title}`;
-        Descr.innerHTML = `${this.description.substring(0, 300)}....`;
-        timeCatText.innerHTML = `Posted on ${this.publishedAt} //  Author is ${this.author}`;
-
-        //image Styling
-        let storywall = document.createElement("img");
-        storywall.className = "rest";
-        storywall.src = this.urlToImage;
-        storywall.style.margin = "10px";
-        storywall.style.marginRight = "15px";
-        storywall.setAttribute('width', '31%');
-        storywall.setAttribute('height', '31%');
+        let cont = `<img class="rest" src="${this.urlToImage}" width="31%" height="31%" style="margin: 10px 15px 10px 10px;">
+        <div class="seventy"><h1>${this.title}</h1><small>Posted on ${this.publishedAt} //  Author is ${this.author}</small>
+        <p>${this.description.substring(0, 300)}....</p>
+        <input type="button" class='button1' id="${ind}" value ="Continue Reading" onClick="return load(${ind})"/> `;
 
         //One complete Story with image
         let oneArticle = document.createElement('div');
         oneArticle.className = 'article-container hundred';
 
-        // content only 
-        let contentStory = document.createElement("div");
-        contentStory.className = "seventy";
-        contentStory.appendChild(titleText);
-        contentStory.appendChild(timeCatText);
-        contentStory.appendChild(Descr);
-        contentStory.appendChild(readMore);
-
-
-        oneArticle.appendChild(storywall);
-        oneArticle.appendChild(contentStory);
-
-
+        oneArticle.innerHTML = cont;    
         if (ind == ArticlesLength - 1) { oneArticle.style.border = 'none'; }
         return oneArticle;
     };

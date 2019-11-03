@@ -1,42 +1,32 @@
-import { Article } from "./Modals/Article.js";
+import { Article  } from "./Modals/Article.js";
 import { Source } from "./Modals/source.js";
 import { getPromise, getPromiseForURLArray } from "./Services.js"
 import { CreateFeedsUsingView } from './Views/ArticleView.js';
 import { createSideBar } from './Views/SideBar.js';
-
+import { load } from "./Views/Modal.js";
+window.load = load;
 //Key
-//export const key='827b0ce7adc847d499f5b4ab0d051ebc';
-export const key = '061c1d73cc384886a562cd04566c1b58';
+export const key='827b0ce7adc847d499f5b4ab0d051ebc';
+//export const key = '061c1d73cc384886a562cd04566c1b58';
 
 
 //Self-Invoking Function Create Header
 (function () {
-    //headr inner elememt
     let headr = document.getElementById("head1");
-    let head = document.createElement("span");
-    head.innerHTML = "<b>NEWSFEED</b> <I> &emsp; Yet another newsfeed</I>";
-    headr.appendChild(head);
+    let inputdiv =
+    `<div id="head" style="position: fixed; top: 0px; right: 4px; left: 4px;">
+        <header id="head1" style="background: rgb(17, 37, 77); padding: 20px 3% 45px; color: white; font-size: 35px;"> 
+            <span><b>NEWSFEED</b> <i> &emsp; Yet another newsfeed</i></span>
+            <div class="form-inline" style="float: right;">
+                <input type="email" name="email" placeholder="Email Address" required="">
+                <button style="border: none;">SUBSCRIBE</button>
+            </div>
+        </header>
+    </div>`
 
-    //Subscribe input Field
-    let inputdiv = document.createElement('div');
-    inputdiv.className = "form-inline";
-    let input = document.createElement('input');
-    input.setAttribute("type", "email");
-    input.setAttribute("name", "email");
-    input.setAttribute("placeholder", "Email Address");
-    input.required = true;
-    inputdiv.style.float = 'Right';
-    inputdiv.appendChild(input);
-    let Subscribe = document.createElement('button');
-    Subscribe.style.border = 'none';
-    Subscribe.innerHTML = "SUBSCRIBE";
-    inputdiv.appendChild(Subscribe);
-    inputdiv.style.padding = "none";
-
-    //append input in header
-
-    headr.appendChild(inputdiv);
+    headr.innerHTML = inputdiv;
 })();
+
 
 
 //Elements Initialization/////////////////////
@@ -86,7 +76,6 @@ getPromise(url).then(response => {
 let bringArticles = (sourceList) => {
     sources = sourceList;
     let urls = sources.map((ob) => { return `https://newsapi.org/v1/articles?source=${ob.id}&apiKey=${key}` });
-    //console.log(urls);
 
     //Function Call to fetch Articles
     getPromiseForURLArray(urls).then(results => {
@@ -102,11 +91,8 @@ let bringArticles = (sourceList) => {
 
         //Converting Json Objects to Class Object. 
         objectsArticle.map((article) => { if (article.description.length > 1) { return articles.push(new Article(article)); } });
-        //console.log(objectsArticle);
-        //console.log(articles);
 
         //All Articles Fetched and passed to loadArticles to load Data
-        //loadArticles(articles);
         main.appendChild(CreateFeedsUsingView(articles, story));
         createSideBar(main);
     });
@@ -116,10 +102,7 @@ let bringArticles = (sourceList) => {
 //Self-Invoking Function Create Footer
 (function () {
     let foot = document.getElementById("foot");
-    let footer = document.createElement("div");
-    footer.style.padding = "20px";
-    footer.style.color = "white";
-    footer.innerHTML = "<center>© Newsfeed 2019</center>";
-    foot.appendChild(footer);
+    let footer = `<div style="padding: 20px; color: white;"><center>© Newsfeed 2019</center></div>`;
+    foot.innerHTML = footer;
 })();
 

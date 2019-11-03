@@ -1,78 +1,71 @@
-*{
+* {
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .article-container {
-    display: flex;
-    flex-wrap: wrap;
-    padding-bottom: 5px;
-    border-bottom : 1px solid 	#cccccc;
-  }
-  
-  .seventy {
-    flex-grow: 1;
-    flex-basis: 65%;
-  }
-  .rest {
-    flex-grow: 1;
-  }
-  .hundred {
-    flex-grow: 1;
-    flex-basis: 100%;
-  }
-  .hundred:after {
-    content: "";
-    flex: none;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #cccccc;
+}
 
-I{
+.seventy {
+  flex-grow: 1;
+  flex-basis: 65%;
+}
+.rest {
+  flex-grow: 1;
+}
+.hundred {
+  flex-grow: 1;
+  flex-basis: 100%;
+}
+.hundred:after {
+  content: "";
+  flex: none;
+}
+
+i {
   font-size: 15px;
 }
 
-
-
-
 /* Button */
-.button1{
-  border:none;
-  color:#ffffff;
+.button1 {
+  border: none;
+  color: #ffffff;
   background: #de5f4b;
-  padding:10px;
+  padding: 10px;
   font-size: 15px;
   border-radius: 2px;
 }
 
-
 .Modal {
-  position: fixed; 
-  z-index: 1; 
-  padding-top: 7%; 
+  position: fixed;
+  z-index: 1;
+  padding-top: 7%;
   left: 0;
   top: 0;
-  width: 100%; 
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.7);
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.7);
 }
-
 
 .modal-content {
   background-color: #fefefe;
   margin: auto;
-  padding : 20px;
+  padding: 20px;
   padding-top: 50px;
   padding-bottom: 50px;
   border: 1px solid #888;
   width: 80%;
 }
 
-
-
-Select{
-  width:350px;
-  border : 1px solid rgb(138, 134, 134);
-  padding : 10px;
+select {
+  width: 350px;
+  border: 1px solid rgb(138, 134, 134);
+  padding: 10px;
   font-size: 15px;
   align-content: center;
 }
@@ -81,10 +74,6 @@ Select{
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  /* width: 100%; */
-  /* right: 0px; */
-  /* margin: 0 0px 10px 0; */
-  /* padding-right: 0; */
 }
 .form-inline input {
   vertical-align: middle;
@@ -100,4 +89,29 @@ Select{
   background-color: black;
   color: white;
   width: 40%;
+}
+
+footer {
+  bottom: 0px;
+  position: fixed;
+  background: rgb(17, 37, 77);
+  right: 4px;
+  left: 4px;
+}
+div#head {
+  position: fixed;
+  top: 0px;
+  right: 4px;
+  left: 4px;
+}
+header#head1 {
+  background: rgb(17, 37, 77);
+  padding: 20px 3% 45px;
+  color: white;
+  font-size: 35px;
+}
+#main {
+  border: none;
+  margin-top: 105px;
+  margin-bottom: 75px;
 }

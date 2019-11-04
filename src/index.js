@@ -11,6 +11,9 @@ export const key='827b0ce7adc847d499f5b4ab0d051ebc';
 //export const key = '061c1d73cc384886a562cd04566c1b58';
 
 
+//console.log()
+console.log('Welcome check out the NewsFeeds');
+
 //Self-Invoking Function Create Header
 (function () {
     document.body.innerHTML=`<div  id="head"><header id="head1"></header></div>
@@ -60,13 +63,13 @@ let url = `https://newsapi.org/v2/sources?language=en&country=in&apiKey=${key}`;
 getPromise(url).then(response => {
     response.json().then(data => {
         if (data.status === 'ok') {
-            console.log(data.message);
+            //console.log(data.message);
             let sources = [...data.sources];
             let sourceList = [];
             sources.forEach(e => {
                 let s1 = new Source(e);
                 sourceList.push(s1);
-                console.log(e);
+                //console.log(e);
                 url = `https://newsapi.org/v1/articles?source=${s1.id}&apiKey=${key}`;
             });
 

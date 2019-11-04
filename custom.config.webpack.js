@@ -1,8 +1,10 @@
 let path = require('path');
 let HTMLWebpackPlugin = require('html-webpack-plugin');
+require('es6-promise').polyfill();
+
 module.exports = {
     mode: 'development',
-    entry: ['babel-polyfill','./src/index.js'],
+    entry: ["whatwg-fetch",'babel-polyfill','./src/index.js'],
     output: {
         filename:'main.js',
         path: path.resolve(__dirname,'dist')

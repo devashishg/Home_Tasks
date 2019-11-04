@@ -1,9 +1,9 @@
 let path = require('path');
-
+require('es6-promise').polyfill();
 
 module.exports = {
     mode: 'production',
-    entry: ['babel-polyfill','./src/index.js'],
+    entry: ["whatwg-fetch",'babel-polyfill','./src/index.js'],
     output: {
         filename:'main.js',
         path: path.resolve(__dirname,'dist')

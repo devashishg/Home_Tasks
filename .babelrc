@@ -2,7 +2,7 @@
     "presets" : [ "@babel/preset-env"],
     "plugins": [
         [
-          "@babel/plugin-proposal-class-properties","html-webpack-plugin",
+          "@babel/plugin-proposal-class-properties",
           {
             "loose": true
           }

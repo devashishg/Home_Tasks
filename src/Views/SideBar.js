@@ -1,59 +1,45 @@
-export {createSideBar}; 
-import {set } from '../index.js';
+import { set } from '../index.js';
 
 
-let createSideBar=(main)=>{
+export let createSideBar = (main) => {
     let form = document.createElement("form");
-    form.setAttribute('action','#');
+    form.setAttribute('action', '#');
     form.className = 'rest';
-    form.style.paddingLeft= '3%'; 
-    form.style.paddingTop= '5%'; 
-    
-    let selectTitle =document.createElement('span');
-    selectTitle.innerHTML = '<h3>SELECT AUTHOR</h3>';
-    selectTitle.style.float='center';
-    form.appendChild(selectTitle);
+    form.style.paddingLeft = '2%';
+    form.style.paddingTop = '5%';
+    form.style.paddingRight = '2%';
 
-    //select Field
-
-    let select =document.createElement('Select');
-    let option=document.createElement('Option');
-    option.setAttribute('value','All');
-    option.innerHTML = 'All';
-    select.appendChild(option);
-    set.forEach((i)=>{
-        let option=document.createElement('Option');
-        option.setAttribute('value',i);
-        option.innerHTML = i;
-        select.appendChild(option);
+    let formContent = `<span><h3>SELECT AUTHOR</h3></span>
+    <select name="category">
+    <option value="All">All</option>`;
+    set.forEach((i) => {
+        if (!(i)) {
+            formContent += `<option value="${i}">Unknown</option>`;
+        } else {
+            formContent += `<option value="${i}">${i}</option>`;
+        }
     });
-    select.setAttribute('name','category');
-    select.addEventListener('change',()=>{filter(this);})
-    //select.setAttribute('onchange',`filter(this)`);
-    form.appendChild(select);
-    
-    //Subscribe Button and field
+    formContent += `</select>`;
+    form.innerHTML = formContent;
 
+    //Subscribe Button and field
     main.appendChild(form);
+    let selector = document.getElementsByTagName('select')[0];
+    selector.addEventListener('change', () => {filter(selector); });
 }
 
-
-
-
 //Filter feeds based on Category
-let filter = (obj)=>{
+export let filter = (obj) => {
     var obj = document.getElementsByName('category');
-    //console.log(obj[0]);
-    let str=obj[0].value;
-    //console.log(str);
+    let str = obj[0].value;
     var elements = document.querySelectorAll('.hundred');
     for (let j = 0; j < elements.length; j++) {
-        if(elements[j].childNodes[1].childNodes[1].innerHTML.split('is ')[1] != str && str!='All'){
+        if (elements[j].children[1].children[1].innerHTML.split('is ')[1] != str && str != 'All') {
             elements[j].style.display = 'none';
-        }else{
+        } else {
             elements[j].style.display = 'flex';
         }
-        if(str=='All'){
+        if (str == 'All') {
             elements[j].style.display = 'flex';
         }
     }

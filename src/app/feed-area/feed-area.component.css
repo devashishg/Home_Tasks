@@ -1,0 +1,88 @@
+/* div#top{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding-left:0.5%;
+    padding-right:0.5%;
+}
+
+#left, #right, #center{
+    display: block;
+    width: 200px;
+}
+
+.button-add{
+    padding: 2% 5%;
+    border-color: grey;
+    border-width: 2px;
+    background: transparent;
+    color: grey;
+    float: right;
+    font-size: 15px;
+    border-radius: 6px;
+    margin-top: 2%;
+    margin-right: 5%;
+    float: right;
+}
+
+span.create::before
+{
+    content: "";
+    display: block;
+    background: url("../../assets/Add.png") no-repeat;
+    width: 20px;
+    height: 20px;
+    float: left;
+}
+
+input#search{
+    padding: 1.5% 2%;
+    border-color: grey;
+    border-width: 2px;
+    background: transparent;
+    color: grey;
+    font-size: 20px;
+    border-radius: 6px;
+    width: 200px;
+    margin-top: 2%;
+}
+.button-search{
+    padding: 1.5% 2%;
+    border-color: grey;
+    border-width: 2px;
+    background: transparent;
+    color: grey;
+    font-size: 15px;
+    border-radius: 6px;
+    margin-top: 2%;
+}
+
+
+span.createS
+{
+    content: "";
+    display: block;
+    background: url("../../assets/search.png") no-repeat;
+    width: 20px;
+    height: 20px;
+} */
+
+
+
+.navbar{
+    background: #dddddd;;
+}
+
+#btn{
+    background: url('../../assets/search.png') no-repeat;
+    padding: 16px;
+    background-position: center;
+}
+
+.form-control{
+    background: transparent;
+}
+
+.icon-bar {
+    background-color:#FF0000 !important;
+ }

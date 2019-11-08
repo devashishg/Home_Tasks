@@ -29,3 +29,7 @@ div#outer{
     right: 4px;
     left: 4px;
 }
+
+a{
+    text-decoration: none;
+}

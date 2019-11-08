@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FeedAreaComponent } from './feed-area/feed-area.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { NewFeedComponent } from './new-feed/new-feed.component';
+import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
@@ -16,8 +17,13 @@ const routes: Routes = [
     component: NewFeedComponent,
     data: { title: 'NewsFeeds' }
   },
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: { title: 'Signin | NewsFeeds' }
+  },
   { path: '',
-    redirectTo: '/NewsFeeds',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
   { path: '**', component: PageNotFoundComponent }

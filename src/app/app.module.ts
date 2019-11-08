@@ -6,13 +6,19 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { FeedAreaComponent } from './feed-area/feed-area.component';
+import { FeedComponent } from './feed-area/feed/feed.component';
+import { NewFeedComponent } from './new-feed/new-feed.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    FeedAreaComponent
+    FeedAreaComponent,
+    FeedComponent,
+    NewFeedComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

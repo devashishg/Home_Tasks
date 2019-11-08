@@ -1,19 +1,6 @@
-<!-- 
-<div id="top">
-    <div id="left"><select name="select" id="select">
-        <option value="A">A</option>
-        <option value="A">C</option>
-        <option value="A">B</option>
-    </select></div>
-    <div id="center">
-        <input type="text" name="search" id="search"/>&nbsp;
-        <Button class="button-search" ><span class="createS"></span></Button>
-    </div>
-    <div id="right"><Button class="button-add" ><span class="create" >&nbsp;Add Article</span></Button></div>
-</div>
- -->
-
- <nav class=" navbar navbar-light bg-inverse navbar-toggleable-sm  navbar-expand-sm">
+<div class="sticky-top">
+ <nav  class="navbar  mx-auto "> <div id="pageTitle" class="nav-item mx-auto">{{ TitlePage }}</div></nav>
+ <nav class=" navbar  navbar-light bg-inverse navbar-toggleable-sm  navbar-expand-md " style="background: #E6E9EE;" >
   
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-3" aria-controls="navbarNav" 
         aria-expanded="false" aria-label="Toggle navigation">
@@ -24,27 +11,101 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown pull-left left">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown link
+                Select Source
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Times Of India</a>
+                <a class="dropdown-item" href="#">The Hindu</a>
                 <a class="dropdown-item" href="#">Something else here</a> 
             </div>
             </li> 
         </ul>
-        <ul class="navbar-nav mr-auto ml-auto">
+        <ul class="navbar-nav mx-auto">
             <li class="nav-item">
-                <form class="form-inline">
+                <form class="form-inline" >
                     <input class="form-control" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-secondary" type="submit" id='btn'></button>
                 </form>
             </li>
         </ul> 
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item ml-auto">
-                <button class="btn btn-outline-secondary" type="submit">Search</button>
+        <ul class="navbar-nav ml-auto mt-1-sm">
+            <li class="nav-item ml-auto-sm">
+                <a class="btn btn-outline-secondary" href = "/CreateFeed">Add New Article</a>
             </li>
         </ul>
     </div>
   </nav>
+</div>
+<div style="margin-bottom:70px;">
+    <div class="container" style="margin-bottom: 4px;" *ngFor="let item of Data" >
+        
+        <app-feed [parentData] = "item"> </app-feed>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- 
+
+  <a class="navbar-brand ml-3" href="#">
+    <span class="">BootstrapCreative </span>
+  </a>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+ 
+  <div class="navbar-toggler-right">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+  </div>
+
+
+
+
+  <div class="collapse navbar-collapse flex-column " id="navbar">
+
+    <ul class="navbar-nav  w-100 justify-content-center px-3">
+      <div class="collapse navbar-collapse" id="navbar-list-3">
+      
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown pull-left left">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Select Source
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="#">Times Of India</a>
+                <a class="dropdown-item" href="#">The Hindu</a>
+                <a class="dropdown-item" href="#">Something else here</a> 
+            </div>
+            </li> 
+        </ul>
+        <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+                <form class="form-inline" >
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-secondary" type="submit" id='btn'></button>
+                </form>
+            </li>
+        </ul> 
+        <ul class="navbar-nav ml-auto mt-1-sm">
+            <li class="nav-item ml-auto-sm">
+                <button class="btn btn-outline-secondary" type="submit">Add New Article</button>
+            </li>
+        </ul>
+    </div>
+    </ul>
+
+    <ul class="navbar-nav justify-content-center w-100 bg-secondary px-3">
+        <div id="pageTitle" class="nav-item mx-auto">{{ TitlePage }}</div>
+    </ul>
+
+
+  </div>
+
+</nav> <div class="container">
+    <app-feed></app-feed>
+    <app-feed></app-feed><app-feed></app-feed><app-feed></app-feed>
+  </div> -->

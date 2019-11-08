@@ -1,0 +1,25 @@
+<div id="accordion">
+  <div class="card mt-2">
+    <div class="card-header">
+      <h3>{{parentData.title}}</h3>
+    </div>
+    <div class="card-body ">
+      <div class="row card-body"><img src="url(../../../../../assets/placeholder.gif" class="img" width="200px" height="auto" >
+        <h5 class="card-title col align-self-end">{{"Date :"+parentData.Date}}<br/>{{" Category: "+parentData.Category}}</h5></div>
+        <p class="card-text collapse show" aria-expanded="true" id="{{parentData.id}}">{{parentData.Description.split('e.')[0]+"..."}}</p>
+        <!-- ----------- -->
+        
+        <div class="collapse" id="{{parentData.id}}">
+          <div class="card-body">
+            {{parentData.Description}}
+          </div>
+        </div>
+        <p>
+          <a class="btn btn-primary mt-2"  data-toggle="collapse" href="{{'#'+parentData.id}}" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Read more
+          </a>
+        </p>
+        <!-- -------------- -->
+      </div>
+  </div>
+</div>

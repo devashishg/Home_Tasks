@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import countries from '../../assets/file.json';
+import  {AppComponent as  app}  from  '../../app/app.component'
+import { Router } from '@angular/router';
 
 //C:\Users\Devashish_Gupta\Documents\Devashish\HomeTasks\src\app\feed-area\
 
@@ -13,13 +15,18 @@ export class FeedAreaComponent implements OnInit {
   public Data;
 
   
-  constructor() { this.TitlePage  = 'Source Name';
+  constructor(private route:Router) { this.TitlePage  = 'Source Name';
     this.Data  = countries.array;
   }
 
-  ngOnInit() {
+  ngOnInit() {console.log('hi!');
     
+  if(!localStorage.getItem('status')){console.log('h1!');
+    this.route.navigate(['/login']);localStorage.setItem('status','false');return;
+  }else  if(localStorage.getItem('status') &&  localStorage.getItem('status')==='flase'){console.log('hi2');
+      this.route.navigate(['/login']);
+    }
   }
-
+  
 }
 

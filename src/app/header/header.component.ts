@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -6,11 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
- 
-  constructor() { 
+  public  BouttonText:string;
+  constructor(private route:Router) {
   }
   
-  ngOnInit() {
+  ngOnInit() {console.log(this.route.url);
+    if(localStorage.getItem('status')==='false'){document.getElementsByTagName('button')[0].innerHTML="Logout";}
+    if(localStorage.getItem('status')==='true'){document.getElementsByTagName('button')[0].innerHTML="Logout";}
   }
 
+  HeaderButtonClick(){console.log('hi');
+    localStorage.setItem('status','false');this.route.navigate(['/login']);
+  }
 }

@@ -8,10 +8,13 @@
         <div class="form ">
           <div class="form-group">
             <input type="text" class="form-control" name="user" id="title" placeholder="Enter UserName or Email"ngModel required>
-            <label for="title" *ngIf="Vauth">Invalid</label>
+            
           </div>
           <div class="form-group mt-4">
             <input type="password" class="form-control" name="password" id="password" placeholder="Password"ngModel required>
+          </div>
+          <div class="alert alert-danger" *ngIf="Vauth">
+            Invalid UserName or Password ! Please try Again.....
           </div>
         <div class="form-group mt-5 text-center">
             <button type="submit" class="btn btn-secondary shadow-sm form-group mr-1">login</button>
@@ -20,7 +23,8 @@
       </div>
     </form>
  <!-- ------------------------------------------- -->
-  </div><p>{{ formData.value | json }}</p>
+  </div>
+  <!-- <p>{{ formData.value | json }}</p> -->
 </div> 
 <!-- ------------------------------------------------------- -->
 <!-- <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>

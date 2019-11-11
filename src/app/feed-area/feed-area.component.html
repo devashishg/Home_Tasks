@@ -1,46 +1,47 @@
 <div class="sticky-top">
- <nav  class="navbar  mx-auto "> <div id="pageTitle" class="nav-item mx-auto">{{ TitlePage }}</div></nav>
- <nav class=" navbar  navbar-light bg-inverse navbar-toggleable-sm  navbar-expand-md " style="background: #E6E9EE;" >
-  
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-3" aria-controls="navbarNav" 
-        aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar  mx-auto ">
+    <div id="pageTitle" class="nav-item mx-auto">{{ TitlePage }}</div>
+  </nav>
+  <nav class=" navbar  navbar-light bg-inverse navbar-toggleable-sm  navbar-expand-md " style="background: #E6E9EE;">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-3"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbar-list-3">
-      
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item dropdown pull-left left">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Select Source
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Times Of India</a>
-                <a class="dropdown-item" href="#">The Hindu</a>
-                <a class="dropdown-item" href="#">Something else here</a> 
-            </div>
-            </li> 
-        </ul>
-        <ul class="navbar-nav mx-auto">
-            <li class="nav-item">
-                <form class="form-inline" >
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-secondary" type="submit" id='btn'></button>
-                </form>
-            </li>
-        </ul> 
-        <ul class="navbar-nav ml-auto mt-1-sm">
-            <li class="nav-item ml-auto-sm">
-                <a class="btn btn-outline-secondary" href = "/CreateFeed">Add New Article</a>
-            </li>
-        </ul>
+
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown pull-left left">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Select Source
+          </a>
+          <div class="dropdown-menu" *ngFor="let source of this.SourceSet" aria-labelledby="navbarDropdownMenuLink" >
+            <a class="dropdown-item"> {{ source }}</a>
+          </div>
+        </li>
+      </ul>
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <form class="form-inline" #searchB="ngForm" (ngSubmit)="SearchFeeds(searchB);">
+            <input class="form-control" name="searchTerm" type="search" placeholder="Search" aria-label="Search" ngModel
+              required>
+            <button class="btn btn-outline-secondary" type="submit" id='btn' ngModel></button>
+          </form>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto mt-1-sm">
+        <li class="nav-item ml-auto-sm">
+          <a class="btn btn-outline-secondary" href="/CreateFeed">Add New Article</a>
+        </li>
+      </ul>
     </div>
   </nav>
 </div>
 <div style="margin-bottom:70px;">
-    <div class="container" style="margin-bottom: 4px;" *ngFor="let item of Data" >
-        
-        <app-feed [parentData] = "item"> </app-feed>
-    </div>
+  <div class="container" style="margin-bottom: 4px;" *ngFor="let item of Data">
+    <app-feed [parentData]="item" *ngIf="search(searchTerm,item) && filter(item,filterTerm)"> </app-feed>
+  </div>
 </div>
 
 

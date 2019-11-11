@@ -5,8 +5,8 @@
     </div>
     <div class="card-body ">
       <div class="row card-body"><img src="url(../../../../../assets/placeholder.gif" class="img" width="200px" height="auto" >
-        <h5 class="card-title col align-self-end">{{"Date :"+parentData.Date}}<br/>{{" Category: "+parentData.Category}}</h5></div>
-        <p class="card-text collapse show" aria-expanded="true" id="{{parentData.id}}">{{parentData.Description.split('e.')[0]+"..."}}</p>
+        <h5 class="card-title col align-self-end">{{"Date :"+parentData.Date}}<br/>{{" Source: "+parentData.Source}}</h5></div>
+        <p class="card-text collapse show" aria-expanded="true" id="{{parentData.id}}">{{parentData.Description.split('.')[0]+"..."}}</p>
         <!-- ----------- -->
         
         <div class="collapse" id="{{parentData.id}}">
@@ -15,8 +15,8 @@
           </div>
         </div>
         <p>
-          <a class="btn btn-primary mt-2" data-toggle="collapse" href="{{'#'+parentData.id}}" role="button" aria-expanded="false" aria-controls="collapseExample">
-            Read more
+          <a class="btn btn-primary mt-2" (click)="toggleToggle()" data-toggle="collapse" href="{{'#'+parentData.id}}" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <div>Read {{ expand }}</div>
           </a>
         </p>
         <!-- -------------- -->

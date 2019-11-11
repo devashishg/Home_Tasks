@@ -8,15 +8,28 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   public  BouttonText:string;
+  public static ButtonElement ;
   constructor(private route:Router) {
   }
   
-  ngOnInit() {console.log(this.route.url);
-    if(localStorage.getItem('status')==='false'){document.getElementsByTagName('button')[0].innerHTML="Logout";}
-    if(localStorage.getItem('status')==='true'){document.getElementsByTagName('button')[0].innerHTML="Logout";}
+  ngOnInit() {
+    HeaderComponent.ButtonElement = document.getElementsByTagName('button')[0];
+    HeaderComponent.HeaderButtonClick(localStorage.getItem('status'));
+    
   }
 
-  HeaderButtonClick(){console.log('hi');
-    localStorage.setItem('status','false');this.route.navigate(['/login']);
+  static HeaderButtonClick(status:String){
+    HeaderComponent.ButtonElement = document.getElementsByTagName('button')[0];
+    if(status ==='true'){
+      HeaderComponent.ButtonElement.style.visibility='visible';
+      document.getElementsByTagName('button')[0].innerHTML="Logout";
+    }else{
+      HeaderComponent.ButtonElement.style.visibility='hidden';
+    }
+  }
+  HeaderButtonClick(){
+    localStorage.setItem('status','false');
+    HeaderComponent.HeaderButtonClick('false');
+    this.route.navigate(['/login']);
   }
 }

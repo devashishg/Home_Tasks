@@ -26,9 +26,11 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(formData){
-    console.log(formData);
+    //console.log(formData);
     if(formData.value.user==='debian' && formData.value.password.length>0){
-      this.route.navigate(['/NewsFeeds']);localStorage.setItem('status','true');
+      this.route.navigate(['/NewsFeeds']);
+      localStorage.setItem('status','true');
+      localStorage.setItem('user',formData.value.user);
     }
     else{this.Vauth=true;}
   }

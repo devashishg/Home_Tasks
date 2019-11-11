@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import countries from '../../assets/file.json';
-import  {AppComponent as  app}  from  '../../app/app.component'
 import { Router } from '@angular/router';
+import { HeaderComponent } from '../header/header.component.js';
 
 //C:\Users\Devashish_Gupta\Documents\Devashish\HomeTasks\src\app\feed-area\
 
@@ -13,20 +13,54 @@ import { Router } from '@angular/router';
 export class FeedAreaComponent implements OnInit {
   public TitlePage:String;
   public Data;
+  public searchTerm:String ;
+  public filetrTerm:String;
+  public SourceSet:Set<String>=new Set<String>();
 
   
   constructor(private route:Router) { this.TitlePage  = 'Source Name';
     this.Data  = countries.array;
+    this.searchTerm="";
+    this.filetrTerm="";
   }
 
-  ngOnInit() {console.log('hi!');
-    
-  if(!localStorage.getItem('status')){console.log('h1!');
-    this.route.navigate(['/login']);localStorage.setItem('status','false');return;
-  }else  if(localStorage.getItem('status') &&  localStorage.getItem('status')==='flase'){console.log('hi2');
+  ngOnInit() {
+    HeaderComponent.HeaderButtonClick(localStorage.getItem('status'))   
+    if(!localStorage.getItem('status') || localStorage.getItem('status')==='false'){
       this.route.navigate(['/login']);
+      localStorage.setItem('status','false');
     }
+    //console.log(this.Data);
+    this.Data.forEach(element => {
+      this.SourceSet.add(element.Source);
+    });
+    console.log( this.SourceSet);
   }
   
+
+  SearchFeeds(searchA){
+    console.log(searchA);
+      this.searchTerm = searchA.value.searchTerm;
+  }
+
+  search(searchTerm,item){
+    if(searchTerm === ""){
+      return true;
+    }else{
+      if(item.Description.includes(searchTerm)){
+        return true;
+      }else if(item.title.includes(searchTerm)){
+        return true;
+      }else{
+        return false;
+      }
+    }
+  }
+
+  filter(item,filterTerm){
+    return true;
+  }
+
+
 }
 

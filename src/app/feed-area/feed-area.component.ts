@@ -22,6 +22,7 @@ export class FeedAreaComponent implements OnInit {
     this.Data  = countries.array;
     this.searchTerm="";
     this.filetrTerm="";
+    
   }
 
   ngOnInit() {
@@ -30,13 +31,15 @@ export class FeedAreaComponent implements OnInit {
       this.route.navigate(['/login']);
       localStorage.setItem('status','false');
     }
-    //console.log(this.Data);
-    this.Data.forEach(element => {
-      this.SourceSet.add(element.Source);
-    });
+    this.SetCreation();
     console.log( this.SourceSet);
   }
   
+  SetCreation(){
+    this.Data.forEach(element => {//console.log( this.SourceSet);
+      this.SourceSet.add(element.Source);
+    });return this.SourceSet;
+  }
 
   SearchFeeds(searchA){
     console.log(searchA);

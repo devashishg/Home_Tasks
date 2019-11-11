@@ -16,11 +16,13 @@
             aria-haspopup="true" aria-expanded="false">
             Select Source
           </a>
-          <div class="dropdown-menu" *ngFor="let source of this.SourceSet" aria-labelledby="navbarDropdownMenuLink" >
-            <a class="dropdown-item"> {{ source }}</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" >
+            <div  *ngFor="let source of SourceSet" >
+            <a class="dropdown-item"> {{ source }}</a></div>
           </div>
         </li>
       </ul>
+
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
           <form class="form-inline" #searchB="ngForm" (ngSubmit)="SearchFeeds(searchB);">

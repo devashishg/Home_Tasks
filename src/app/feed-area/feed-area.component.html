@@ -17,8 +17,9 @@
             Select Source
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" >
+            <a class="dropdown-item" (click) = "Setfilter('All Sources')"> All </a>
             <div  *ngFor="let source of SourceSet" >
-            <a class="dropdown-item"> {{ source }}</a></div>
+            <a class="dropdown-item" (click) = "Setfilter(source)"> {{ source }}</a></div>
           </div>
         </li>
       </ul>
@@ -26,7 +27,7 @@
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
           <form class="form-inline" #searchB="ngForm" (ngSubmit)="SearchFeeds(searchB);">
-            <input class="form-control" name="searchTerm" type="search" placeholder="Search" aria-label="Search" ngModel
+            <input class="form-control border border-secondary" name="searchTerm" type="search" placeholder="Search" aria-label="Search" ngModel
               required>
             <button class="btn btn-outline-secondary" type="submit" id='btn' ngModel></button>
           </form>

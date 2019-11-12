@@ -3,7 +3,6 @@ import countries from '../../assets/file.json';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component.js';
 
-//C:\Users\Devashish_Gupta\Documents\Devashish\HomeTasks\src\app\feed-area\
 
 @Component({
   selector: 'app-feed-area',
@@ -14,14 +13,14 @@ export class FeedAreaComponent implements OnInit {
   public TitlePage:String;
   public Data;
   public searchTerm:String ;
-  public filetrTerm:String;
+  public filterTerm:String;
   public SourceSet:Set<String>=new Set<String>();
 
   
   constructor(private route:Router) { this.TitlePage  = 'Source Name';
     this.Data  = countries.array;
     this.searchTerm="";
-    this.filetrTerm="";
+    this.filterTerm="";
     
   }
 
@@ -61,7 +60,20 @@ export class FeedAreaComponent implements OnInit {
   }
 
   filter(item,filterTerm){
-    return true;
+    if(filterTerm === "" || filterTerm === 'All Sources'){
+      return true;
+    }else{
+      if(item.Source === filterTerm){
+        return true;
+      }else{
+        return false;
+      }
+    }
+  }
+
+  Setfilter(term){
+    this.filterTerm = term; this.TitlePage = term;
+    console.log(term);console.log(this.filterTerm);
   }
 
 

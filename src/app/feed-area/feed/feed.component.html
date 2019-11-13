@@ -5,7 +5,7 @@
     </div>
     <div class="card-body ">
       <div class="row car d-body"><img src="url(../../../../../assets/placeholder.gif" class="img" width="200px" height="auto" >
-        <h5 class="card-title col align-self-end">{{"Date :"+parentData.Date}}<br/>{{" Source: "+parentData.Source}}</h5></div>
+        <h5 class="card-title col align-self-end">{{"Date :"+parentData.Date | date}}<br/>{{" Source: "+parentData.Source}}</h5></div>
         <p class="card-text collapse show" aria-expanded="true" id="{{parentData.id}}">{{parentData.Description.split('.')[0]+"..."}}</p>
         <!-- ----------- -->
         

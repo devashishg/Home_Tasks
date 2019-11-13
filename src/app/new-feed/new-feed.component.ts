@@ -34,4 +34,9 @@ export class NewFeedComponent implements OnInit {
     }
   }
 
+
+  navigateBack(){
+    this.route.navigate(['/NewsFeeds']);
+  }
+
 }

@@ -75,7 +75,11 @@ export class FeedAreaComponent implements OnInit {
     this.filterTerm = term; this.TitlePage = term;
     console.log(term);console.log(this.filterTerm);
   }
+  navigate(){
+    console.log('navigating');
+    this.route.navigate(['/CreateFeed']);
+  }
 
-
+  
 }
 

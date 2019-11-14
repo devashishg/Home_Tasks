@@ -17,9 +17,3 @@ export class AppComponent {
   }
   title = 'HomeTasks';
 }
-// if(localStorage.getItem('flag')!=0){
-//   var array1 =[];
-//   var ob = JSON.stringify(array1);
-//   localStorage.setItem('flag',0);
-//   localStorage.setItem('Subscriptions',ob);
-// }

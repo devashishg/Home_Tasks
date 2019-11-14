@@ -17,9 +17,9 @@
             Select Source
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" >
-            <a class="dropdown-item" (click) = "Setfilter('All Sources')"> All </a>
+            <a class="dropdown-item" (click) = "SourceLoad('Top Head Lines')"> Top Head Lines </a>
             <div  *ngFor="let source of SourceSet" >
-            <a class="dropdown-item" (click) = "Setfilter(source)"> {{ source }}</a></div>
+            <a class="dropdown-item" (click) = "SourceLoad(source)"> {{ source }}</a></div>
           </div>
         </li>
       </ul>
@@ -29,7 +29,7 @@
           <form class="form-inline" #searchB="ngForm" (ngSubmit)="SearchFeeds(searchB);">
             <input class="form-control border border-secondary" name="searchTerm" type="search" placeholder="Search" aria-label="Search" ngModel
               required>
-            <button class="btn btn-outline-secondary" type="submit" id='btn' ngModel></button>
+            <button class="btn btn-outline-secondary" type="submit" id='btn'></button>
           </form>
         </li>
       </ul>
@@ -43,10 +43,10 @@
 </div>
 <div style="margin-bottom:70px;">
   <div class="container" style="margin-bottom: 4px;" *ngFor="let item of Data">
-    <app-feed [parentData]="item" *ngIf="search(searchTerm,item) && filter(item,filterTerm)"> </app-feed>
+    <app-feed [parentData]="item" *ngIf="search(searchTerm,item) "> </app-feed>
   </div>
 </div>
-
+<!--&& -->
 
 
 

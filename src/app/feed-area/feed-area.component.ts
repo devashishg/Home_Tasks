@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import countries from '../../assets/file.json';
+// import countries from '../../assets/file.json';    Local file load 
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component.js';
+import { DataFetchService } from '../DataFetchService/data-fetch.service.js';
+import { Key } from 'src/constants.js';
 
 
 @Component({
@@ -14,11 +16,13 @@ export class FeedAreaComponent implements OnInit {
   public Data;
   public searchTerm:String ;
   public filterTerm:String;
-  public SourceSet:Set<String>=new Set<String>();
+  public SourceSet:Set<String>;
+  
 
   
-  constructor(private route:Router) { this.TitlePage  = 'Source Name';
-    this.Data  = countries.array;
+  constructor(private route:Router, private DataFetchService : DataFetchService) {
+    this.TitlePage  = 'Top Headlines';
+    // this.Data  = countries.array;
     this.searchTerm="";
     this.filterTerm="";
     
@@ -31,17 +35,43 @@ export class FeedAreaComponent implements OnInit {
       localStorage.setItem('status','false');
     }
     this.SetCreation();
-    console.log( this.SourceSet);
+    //console.log( this.SourceSet);
+    
+    this.load(`https://newsapi.org/v2/top-headlines?country=in&apiKey=${ Key }`);
+    
+    
   }
   
+load(url){
+
+  this.DataFetchService.getNewsFeeds(url).subscribe((obj : any)=>{
+      //console.log(obj.articles);
+      this.Data = obj.articles.map((object)=>{return object.description && object.publishedAt && object.title ? object : 
+        {
+          author: `${object.author ? object.author :'Error'}`,
+          content: `${object.content ? object.content :'Error'}`,
+          description:  `${object.description ? object.description :'Server Error'}`,
+          id: object.id ,
+          publishedAt: `${object.publishedAt ? object.publishedAt :'Error'}`,
+          source: {id: `${object.source.id ? object.source.id :'Error'}`, name: `${object.source.name ? object.source.name :'Error'}`},
+          title: `${object.title ? object.title :'Error'}`,
+          url: `${object.url ? object.url :'Error'}`,
+          urlToImage: object.urlToImage ? object.urlToImage :'assets/missingFile.png'
+        } 
+      });      
+    });
+    //console.log(this.TitlePage);
+}
+
   SetCreation(){
-    this.Data.forEach(element => {//console.log( this.SourceSet);
-      this.SourceSet.add(element.Source);
-    });return this.SourceSet;
+    this.SourceSet = new Set<String>(['the-times-of-india','time','the-new-york-times',
+      'the-hindu','msnbc','google-news','cnn','bbc-news','bloomberg',
+      'buzzfeed','engadget','espn','hacker-news', 'national-geographic',
+      'techradar','the-verge','wired']);
+    return this.SourceSet;
   }
 
   SearchFeeds(searchA){
-    console.log(searchA);
       this.searchTerm = searchA.value.searchTerm;
   }
 
@@ -49,7 +79,7 @@ export class FeedAreaComponent implements OnInit {
     if(searchTerm === ""){
       return true;
     }else{
-      if(item.Description.includes(searchTerm)){
+      if(item.description.includes(searchTerm)){
         return true;
       }else if(item.title.includes(searchTerm)){
         return true;
@@ -59,22 +89,15 @@ export class FeedAreaComponent implements OnInit {
     }
   }
 
-  filter(item,filterTerm){
-    if(filterTerm === "" || filterTerm === 'All Sources'){
-      return true;
-    }else{
-      if(item.Source === filterTerm){
-        return true;
-      }else{
-        return false;
-      }
+
+  SourceLoad(source){
+    if(source === 'Top Head Lines' && this.TitlePage === 'Top Headlines'){}
+    else{
+      this.load(`https://newsapi.org/v2/top-headlines?sources=${source}&apiKey=${Key}`);
+      this.TitlePage = source.split('-').join(' ').toUpperCase();
     }
   }
 
-  Setfilter(term){
-    this.filterTerm = term; this.TitlePage = term;
-    console.log(term);console.log(this.filterTerm);
-  }
   navigate(){
     console.log('navigating');
     this.route.navigate(['/CreateFeed']);

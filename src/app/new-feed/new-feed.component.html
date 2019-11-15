@@ -24,7 +24,7 @@
         </div>
         <div class="form-group col-md-6">
           <label for="date">Date</label>
-          <input type="date" name='Date' class="form-control" id="date" ngModel required>
+          <input type="date" name='publishedAt' class="form-control" id="date" ngModel required>
         </div>
       </div>
 
@@ -43,7 +43,7 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="Desc">Description</label>
-          <textarea name='Description' class="form-control" id="Desc" ngModel required></textarea>
+          <textarea name='description' class="form-control" id="Desc" ngModel required></textarea>
         </div>
         <div class="form-group col-md-6">
           <label for="url">Source URL</label>
@@ -54,7 +54,7 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="Desc">Image Url</label>
-          <input type="url" name='ImageUrl' class="form-control" id="url" placeholder="https://example.com" pattern="http[s]{0-1}://*" ngModel required>
+          <input type="url" name='urlToImage' class="form-control" id="url" placeholder="https://example.com" pattern="http[s]?://.+[.].+" ngModel required>
         </div>
         <div class="form-row form-group col-md-6">
           <div class="mx-auto">

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FeedAreaComponent } from '../feed-area/feed-area.component';
 
 @Component({
   selector: 'app-new-feed',
@@ -24,12 +25,15 @@ export class NewFeedComponent implements OnInit {
     }
   }
 
-  SubmissionNewFeed(obj){
-    this.submitted=true;
-    console.log(obj);
-    if(obj.form.status === "VALID"){
-        window.alert(`Article Saved: ${JSON.stringify(obj.value)} `);
-    }else{
+  SubmissionNewFeed(obj) {
+    this.submitted = true;
+    if ((FeedAreaComponent.MyArticles && FeedAreaComponent.MyArticles[0].author === 'Error') || !FeedAreaComponent.MyArticles) {
+      FeedAreaComponent.MyArticles = new Array();
+    } 
+    FeedAreaComponent.MyArticles.push(obj.value);
+    if (obj.form.status === "VALID") {
+      window.alert(`Article Saved: ${JSON.stringify(obj.value)} `);
+    } else {
       window.alert(`InValid Input`);
     }
   }

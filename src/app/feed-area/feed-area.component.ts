@@ -17,11 +17,14 @@ export class FeedAreaComponent implements OnInit {
   public searchTerm:String ;
   public filterTerm:String;
   public SourceSet:Set<String>;
+  public static HeadLines ;
+  public static FirstLoad:boolean =true;
+  public static MyArticles;
   
 
   
   constructor(private route:Router, private DataFetchService : DataFetchService) {
-    this.TitlePage  = 'Top Headlines';
+    this.TitlePage  = 'TOP HEAD LINES';
     // this.Data  = countries.array;
     this.searchTerm="";
     this.filterTerm="";
@@ -42,11 +45,10 @@ export class FeedAreaComponent implements OnInit {
     
   }
   
-load(url){
-
+load = (url:string)=>{
   this.DataFetchService.getNewsFeeds(url).subscribe((obj : any)=>{
       //console.log(obj.articles);
-      this.Data = obj.articles.map((object)=>{return object.description && object.publishedAt && object.title ? object : 
+      this.setData(obj.articles.map((object)=>{return object.description && object.publishedAt && object.title ? object : 
         {
           author: `${object.author ? object.author :'Error'}`,
           content: `${object.content ? object.content :'Error'}`,
@@ -58,51 +60,82 @@ load(url){
           url: `${object.url ? object.url :'Error'}`,
           urlToImage: object.urlToImage ? object.urlToImage :'assets/missingFile.png'
         } 
-      });      
+      }));     
     });
-    //console.log(this.TitlePage);
 }
 
-  SetCreation(){
-    this.SourceSet = new Set<String>(['the-times-of-india','time','the-new-york-times',
+  setData = (Data)=>{
+    if(FeedAreaComponent.FirstLoad){
+      //console.log('here');
+      this.Data = Data;
+      FeedAreaComponent.HeadLines = Data;
+      FeedAreaComponent.FirstLoad = !FeedAreaComponent.FirstLoad;
+    }else{
+      this.Data = Data;
+    }
+  }
+
+  SourceLoad(source){
+    //console.log('source function call' + source);
+    //console.log('source function call' + this.TitlePage);
+    if(source === 'Top Head Lines' ){
+      //console.log('Hi')
+      //console.log(FeedAreaComponent.HeadLines);
+      this.Data = FeedAreaComponent.HeadLines;
+      this.TitlePage = 'TOP HEAD LINES';
+    }else if( source === 'My Articles'){
+      if(!FeedAreaComponent.MyArticles){
+        FeedAreaComponent.MyArticles=[
+          {
+            author: 'Error',
+            content: 'Error',
+            description:  'Start Creating Articles... That will shown here .',
+            id:  'Error',
+            publishedAt: 'Not Applicable',
+            source: {id: 'Error', name:'No Content'},
+            title: 'No News Article Created',
+            url: 'Error',
+            urlToImage: 'assets/missingFile.png'
+          } 
+        ]
+      }
+      this.Data = FeedAreaComponent.MyArticles;
+    }else{
+      this.load(`https://newsapi.org/v2/top-headlines?sources=${source}&apiKey=${Key}`);
+      this.TitlePage = source.split('-').join(' ').toUpperCase();
+    }
+  }
+
+  SetCreation= ()=>{
+    this.SourceSet = new Set<String>(['the-times-of-india','time','the-new-york-times','My Articles',
       'the-hindu','msnbc','google-news','cnn','bbc-news','bloomberg',
       'buzzfeed','engadget','espn','hacker-news', 'national-geographic',
       'techradar','the-verge','wired']);
     return this.SourceSet;
   }
 
-  SearchFeeds(searchA){
-      this.searchTerm = searchA.value.searchTerm;
+
+  // static trimData(text : string){
+  //   let d= text.split('-');
+  //   d.pop();
+  //   console.log(d);
+  //   return d.join('-');
+  // }
+
+  SearchFeeds = (searchA)=>{
+    this.searchTerm = searchA.value.searchTerm;
   }
 
-  search(searchTerm,item){
-    if(searchTerm === ""){
+  search= (searchTerm,item)=>{
+    if(searchTerm === "" || item.description.includes(searchTerm) || item.title.includes(searchTerm)){
       return true;
     }else{
-      if(item.description.includes(searchTerm)){
-        return true;
-      }else if(item.title.includes(searchTerm)){
-        return true;
-      }else{
-        return false;
-      }
-    }
-  }
-
-
-  SourceLoad(source){
-    if(source === 'Top Head Lines' && this.TitlePage === 'Top Headlines'){}
-    else{
-      this.load(`https://newsapi.org/v2/top-headlines?sources=${source}&apiKey=${Key}`);
-      this.TitlePage = source.split('-').join(' ').toUpperCase();
+      return false;
     }
   }
 
   navigate(){
     console.log('navigating');
-    this.route.navigate(['/CreateFeed']);
-  }
-
-  
+    this.route.navigate(['/CreateFeed']); 
+  } 
 }
-

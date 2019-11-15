@@ -11,6 +11,8 @@ import { NewFeedComponent } from './new-feed/new-feed.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TitlePipe } from './Pipes/title.pipe';
+import { DescriptionPipe } from './Pipes/description.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { HttpClientModule } from '@angular/common/http';
     FeedComponent,
     NewFeedComponent,
     PageNotFoundComponent,
-    LoginComponent
+    LoginComponent,
+    TitlePipe,
+    DescriptionPipe
   ],
   imports: [
     BrowserModule,

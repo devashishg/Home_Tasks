@@ -24,7 +24,7 @@ export class NewFeedComponent implements OnInit {
     }
   }
 
-  SubmissionNewFeed(obj){
+  submissionNewFeed=(obj)=>{
     this.submitted=true;
     console.log(obj);
     if(obj.form.status === "VALID"){

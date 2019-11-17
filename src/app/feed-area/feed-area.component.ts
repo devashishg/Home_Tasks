@@ -14,7 +14,7 @@ export class FeedAreaComponent implements OnInit {
   public Data;
   public searchTerm:String ;
   public filterTerm:String;
-  public SourceSet:Set<String>=new Set<String>();
+  public sourceSet:Set<String>=new Set<String>();
 
   
   constructor(private route:Router) { this.TitlePage  = 'Source Name';
@@ -25,58 +25,50 @@ export class FeedAreaComponent implements OnInit {
   }
 
   ngOnInit() {
-    HeaderComponent.HeaderButtonClick(localStorage.getItem('status'))   
+    HeaderComponent.HeaderButtonClick(localStorage.getItem('status'));   
     if(!localStorage.getItem('status') || localStorage.getItem('status')==='false'){
       this.route.navigate(['/login']);
       localStorage.setItem('status','false');
     }
-    this.SetCreation();
-    console.log( this.SourceSet);
+    this.setCreation();
+    //console.log( this.SourceSet);
   }
   
-  SetCreation(){
-    this.Data.forEach(element => {//console.log( this.SourceSet);
-      this.SourceSet.add(element.Source);
-    });return this.SourceSet;
+  setCreation(){
+    this.Data.map((f)=>{this.sourceSet.add(f.Source);});
   }
 
-  SearchFeeds(searchA){
-    console.log(searchA);
+  searchFeeds(searchA){
+    //console.log(searchA);
       this.searchTerm = searchA.value.searchTerm;
   }
 
-  search(searchTerm,item){
+  search=(searchTerm,item)=>{
     if(searchTerm === ""){
       return true;
-    }else{
-      if(item.Description.includes(searchTerm)){
-        return true;
-      }else if(item.title.includes(searchTerm)){
-        return true;
-      }else{
-        return false;
-      }
     }
-  }
-
-  filter(item,filterTerm){
-    if(filterTerm === "" || filterTerm === 'All Sources'){
+    if(item.Description.includes(searchTerm)||item.title.includes(searchTerm)){
       return true;
     }else{
-      if(item.Source === filterTerm){
-        return true;
-      }else{
-        return false;
-      }
-    }
+      return false;
+    } 
   }
 
-  Setfilter(term){
-    this.filterTerm = term; this.TitlePage = term;
-    console.log(term);console.log(this.filterTerm);
+  filter=(item,filterTerm)=>{
+    if(filterTerm === "" || filterTerm === 'All Sources' || item.Source === filterTerm){
+      return true;
+    }else{
+      return false;
+    }
+    
   }
-  navigate(){
-    console.log('navigating');
+
+  setFilter=(term)=>{
+    this.filterTerm = term; this.TitlePage = term;
+    //console.log(term);console.log(this.filterTerm);
+  }
+  navigate=()=>{
+    //console.log('navigating');
     this.route.navigate(['/CreateFeed']);
   }
 

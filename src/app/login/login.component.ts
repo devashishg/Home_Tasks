@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
+import { LoginServiceService } from '../Service/login-service.service';
 
 
 @Component({
@@ -11,26 +12,25 @@ import { AppComponent } from '../app.component';
 export class LoginComponent implements OnInit {
   public Vauth:boolean;
 
-  constructor(private route:Router) { 
+  constructor(private route:Router , private logInService : LoginServiceService) { 
     this.Vauth=false;
     
   }
 
   ngOnInit() {
-    if(!localStorage.getItem('status')){console.log('hhello1!');
-      localStorage.getItem('status')==='false';
-    }else
-    if(localStorage.getItem('status')==='true'){console.log('hello2!');
+    //console.log(this.logInService.getStatus());
+    if(this.logInService.getStatus()){
       this.route.navigate(['/NewsFeeds']);
     }
   }
 
   onSubmit(formData){
     //console.log(formData);
-    if(formData.value.user==='debian' && formData.value.password.length>0){
+    if(formData.value.user==='debian' && formData.value.password === 'rstuvw'){
+      this.logInService.setStatus(true);
+      this.logInService.setUser(formData.value.user);
       this.route.navigate(['/NewsFeeds']);
       localStorage.setItem('status','true');
-      localStorage.setItem('user',formData.value.user);
     }
     else{this.Vauth=true;}
   }

@@ -17,16 +17,16 @@
             Select Source
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" >
-            <a class="dropdown-item" (click) = "SourceLoad('Top Head Lines')"> Top Head Lines </a>
+            <a class="dropdown-item" (click) = "sourceLoad('Top Head Lines')"> Top Head Lines </a>
             <div  *ngFor="let source of SourceSet" >
-            <a class="dropdown-item" (click) = "SourceLoad(source)"> {{ source }}</a></div>
+            <a class="dropdown-item" (click) = "sourceLoad(source)"> {{ source }}</a></div>
           </div>
         </li>
       </ul>
 
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
-          <form class="form-inline" #searchB="ngForm" (ngSubmit)="SearchFeeds(searchB);">
+          <form class="form-inline" #searchB="ngForm" (ngSubmit)="searchFeeds(searchB);">
             <input class="form-control border border-secondary" name="searchTerm" type="search" placeholder="Search" aria-label="Search" ngModel
               required>
             <button class="btn btn-outline-secondary" type="submit" id='btn'></button>

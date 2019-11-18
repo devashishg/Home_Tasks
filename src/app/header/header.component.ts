@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginServiceService } from '../Service/login-service.service';
 
 @Component({
   selector: 'app-header',
@@ -9,27 +10,34 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   public  BouttonText:string;
   public static ButtonElement ;
-  constructor(private route:Router) {
+  constructor(private route:Router , private logInService : LoginServiceService) {
   }
   
   ngOnInit() {
+    //console.log(this.logInService.getStatus());
     HeaderComponent.ButtonElement = document.getElementsByTagName('button')[0];
-    HeaderComponent.HeaderButtonClick(localStorage.getItem('status'));
-    
+    if(localStorage.getItem('status')==='true'){
+      this.logInService.setStatus(true);
+    }
+    //console.log(this.logInService.getStatus());
+    HeaderComponent.HeaderButtonClick(this.logInService.getStatus());    
   }
 
-  static HeaderButtonClick(status:String){
+  static HeaderButtonClick(status:boolean){
+    //console.log(status);
     HeaderComponent.ButtonElement = document.getElementsByTagName('button')[0];
-    if(status ==='true'){
+    if(status){
       HeaderComponent.ButtonElement.style.visibility='visible';
       document.getElementsByTagName('button')[0].innerHTML="Logout";
     }else{
       HeaderComponent.ButtonElement.style.visibility='hidden';
     }
   }
+
   HeaderButtonClick(){
-    localStorage.setItem('status','false');
-    HeaderComponent.HeaderButtonClick('false');
+    this.logInService.setStatus(false);
+    this.logInService.setUser('user');
+    HeaderComponent.HeaderButtonClick(false);
     this.route.navigate(['/login']);
   }
 }

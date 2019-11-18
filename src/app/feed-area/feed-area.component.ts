@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 // import countries from '../../assets/file.json';    Local file load 
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component.js';
-import { DataFetchService } from '../DataFetchService/data-fetch.service.js';
+import { DataFetchService } from '../Service/data-fetch.service.js';
 import { Key } from 'src/constants.js';
+import { LoginServiceService } from '../Service/login-service.service.js';
 
 
 @Component({
@@ -23,31 +24,33 @@ export class FeedAreaComponent implements OnInit {
   
 
   
-  constructor(private route:Router, private DataFetchService : DataFetchService) {
+  constructor(private route:Router, private DataFetchService : DataFetchService, private logInService : LoginServiceService) {
     this.TitlePage  = 'TOP HEAD LINES';
-    // this.Data  = countries.array;
     this.searchTerm="";
     this.filterTerm="";
     
   }
 
   ngOnInit() {
-    HeaderComponent.HeaderButtonClick(localStorage.getItem('status'))   
-    if(!localStorage.getItem('status') || localStorage.getItem('status')==='false'){
-      this.route.navigate(['/login']);
+
+    if(!localStorage.getItem('status')||localStorage.getItem('status')==='false'){
       localStorage.setItem('status','false');
+      this.logInService.setStatus(false);
+    }else{
+      this.logInService.setStatus(true);HeaderComponent.HeaderButtonClick(true);
     }
-    this.SetCreation();
-    //console.log( this.SourceSet);
+    console.log(this.logInService.getStatus());
     
+    
+    if(!this.logInService.getStatus()){
+      this.route.navigate(['/login']);
+    }
+    this.setCreation();
     this.load(`https://newsapi.org/v2/top-headlines?country=in&apiKey=${ Key }`);
-    
-    
   }
   
 load = (url:string)=>{
   this.DataFetchService.getNewsFeeds(url).subscribe((obj : any)=>{
-      //console.log(obj.articles);
       this.setData(obj.articles.map((object)=>{return object.description && object.publishedAt && object.title ? object : 
         {
           author: `${object.author ? object.author :'Error'}`,
@@ -66,7 +69,6 @@ load = (url:string)=>{
 
   setData = (Data)=>{
     if(FeedAreaComponent.FirstLoad){
-      //console.log('here');
       this.Data = Data;
       FeedAreaComponent.HeadLines = Data;
       FeedAreaComponent.FirstLoad = !FeedAreaComponent.FirstLoad;
@@ -75,12 +77,8 @@ load = (url:string)=>{
     }
   }
 
-  SourceLoad(source){
-    //console.log('source function call' + source);
-    //console.log('source function call' + this.TitlePage);
+  sourceLoad = (source)=>{
     if(source === 'Top Head Lines' ){
-      //console.log('Hi')
-      //console.log(FeedAreaComponent.HeadLines);
       this.Data = FeedAreaComponent.HeadLines;
       this.TitlePage = 'TOP HEAD LINES';
     }else if( source === 'My Articles'){
@@ -106,7 +104,7 @@ load = (url:string)=>{
     }
   }
 
-  SetCreation= ()=>{
+  setCreation= ()=>{
     this.SourceSet = new Set<String>(['the-times-of-india','time','the-new-york-times','My Articles',
       'the-hindu','msnbc','google-news','cnn','bbc-news','bloomberg',
       'buzzfeed','engadget','espn','hacker-news', 'national-geographic',
@@ -115,14 +113,7 @@ load = (url:string)=>{
   }
 
 
-  // static trimData(text : string){
-  //   let d= text.split('-');
-  //   d.pop();
-  //   console.log(d);
-  //   return d.join('-');
-  // }
-
-  SearchFeeds = (searchA)=>{
+  searchFeeds = (searchA)=>{
     this.searchTerm = searchA.value.searchTerm;
   }
 
@@ -134,7 +125,7 @@ load = (url:string)=>{
     }
   }
 
-  navigate(){
+  navigate=()=>{
     console.log('navigating');
     this.route.navigate(['/CreateFeed']); 
   } 

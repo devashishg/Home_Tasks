@@ -9,22 +9,24 @@ import { LoginServiceService } from '../Service/login-service.service';
   styleUrls: ['./new-feed.component.css']
 })
 export class NewFeedComponent implements OnInit {
-  public user: String;
+  public user: string;
+  public userDummy: string;
   public submitted: boolean;
-  constructor(private route: Router, private logInServices: LoginServiceService) {
-    this.submitted = false;
-    this.user = logInServices.getUser();;
-  }
 
+  constructor(private route: Router, public logInServices: LoginServiceService) {
+    this.submitted = false;
+  }
 
   ngOnInit() {
     if (!this.logInServices.getStatus()) {
       this.route.navigate(['/login']);
     }
+    
+    this.user = this.logInServices.getUser();
+    this.userDummy = this.user;
   }
 
   submissionNewFeed = (obj) => {
-    console.log(obj);
     this.submitted = true;
     if ((FeedAreaComponent.MyArticles && FeedAreaComponent.MyArticles[0].author === 'Error') || !FeedAreaComponent.MyArticles) {
       FeedAreaComponent.MyArticles = new Array();
@@ -35,8 +37,24 @@ export class NewFeedComponent implements OnInit {
 
       ${JSON.stringify(obj.value)} `);
       FeedAreaComponent.MyArticles.push(obj.value);
+
+      console.log(this.user);
+      console.log(this.userDummy);
+      console.log(this.logInServices.getUser());
+      
+      obj.reset();
+      
+      console.log(typeof(this.user));
+     
+      console.log(this.user);
+      
+      this.user = this.userDummy;
+      console.log(this.user);
+      console.log(this.userDummy);
+      console.log(this.logInServices.getUser());
+    
     } else {
-      window.alert(`InValid Input`);
+      window.alert(`inValid Input`);
     }
   }
 

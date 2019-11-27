@@ -14,6 +14,7 @@ export class AppComponent implements OnInit{
   constructor(private route:Router, private logInServices : LoginServiceService) {
     if(localStorage.getItem('status')==='true'){
       logInServices.setStatus(true);
+      logInServices.setUser(localStorage.getItem('user'));
     }
   }
 

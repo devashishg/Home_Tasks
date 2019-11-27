@@ -9,16 +9,16 @@ import { LoginServiceService } from '../Service/login-service.service';
   styleUrls: ['./new-feed.component.css']
 })
 export class NewFeedComponent implements OnInit {
-  public user:String;
-  public submitted:boolean;
-  constructor(private route:Router , private logInServices : LoginServiceService) { 
-    this.submitted=false;
-    this.user = localStorage.getItem('user');
+  public user: String;
+  public submitted: boolean;
+  constructor(private route: Router, private logInServices: LoginServiceService) {
+    this.submitted = false;
+    this.user = logInServices.getUser();;
   }
-  
+
 
   ngOnInit() {
-    if(!this.logInServices.getStatus()){
+    if (!this.logInServices.getStatus()) {
       this.route.navigate(['/login']);
     }
   }
@@ -28,19 +28,19 @@ export class NewFeedComponent implements OnInit {
     this.submitted = true;
     if ((FeedAreaComponent.MyArticles && FeedAreaComponent.MyArticles[0].author === 'Error') || !FeedAreaComponent.MyArticles) {
       FeedAreaComponent.MyArticles = new Array();
-    } 
-    
+    }
+
     if (obj.form.status === "VALID") {
       window.alert(`Article Saved:
 
-      ${JSON.stringify(obj.value)} `); FeedAreaComponent.MyArticles.push(obj.value);
+      ${JSON.stringify(obj.value)} `);
+      FeedAreaComponent.MyArticles.push(obj.value);
     } else {
       window.alert(`InValid Input`);
     }
   }
 
-
-  navigateBack(){
+  navigateBack() {
     this.route.navigate(['/NewsFeeds']);
   }
 

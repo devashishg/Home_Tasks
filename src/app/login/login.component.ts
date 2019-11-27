@@ -10,28 +10,31 @@ import { LoginServiceService } from '../Service/login-service.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  public Vauth:boolean;
+  public Vauth: boolean;
 
-  constructor(private route:Router , private logInService : LoginServiceService) { 
-    this.Vauth=false;
-    
+  constructor(private route: Router, private logInService: LoginServiceService) {
+    this.Vauth = false;
   }
 
   ngOnInit() {
-    //console.log(this.logInService.getStatus());
-    if(this.logInService.getStatus()){
+    if (this.logInService.getStatus()) {
       this.route.navigate(['/NewsFeeds']);
     }
   }
 
-  onSubmit(formData){
-    //console.log(formData);
-    if(formData.value.user==='debian' && formData.value.password === 'rstuvw'){
+  /**
+   * Function called on submition of form
+   * @param formData 
+   */
+  onSubmit(formData) {
+    if (formData.value.user === 'debian' && formData.value.password === 'rstuvw') {
       this.logInService.setStatus(true);
       this.logInService.setUser(formData.value.user);
+      localStorage.setItem('status', 'true');
+      localStorage.setItem('user', formData.value.user);
       this.route.navigate(['/NewsFeeds']);
-      localStorage.setItem('status','true');
+    } else {
+      this.Vauth = true;
     }
-    else{this.Vauth=true;}
   }
 }

@@ -1,31 +1,32 @@
 <div class='container mx-auto' style="margin-bottom:70px;margin-top:50px;">
   <div class="card mt-2 shadow bg-white rounded pt-5">
- <!-- ------------------------------------------- -->
+    <!-- ------------------------------------------- -->
     <form class="card-body w-50 mx-auto" #formData="ngForm" (ngSubmit)="onSubmit(formData)">
       <div class="text-center mb-5 h2 text-muted">
-              <i class="fa fa-newspaper-o" style="font-size:48px;"></i> Newsfeed Login
+        <i class="fa fa-newspaper-o" style="font-size:48px;"></i> Newsfeed Login
       </div>
-        <div class="form ">
-          <div class="form-group">
-            <input type="text" class="form-control" name="user" id="title" placeholder="Enter UserName or Email"ngModel required>
-            
-          </div>
-          <div class="form-group mt-4">
-            <input type="password" class="form-control" name="password" id="password" placeholder="Password"ngModel required>
-          </div>
-          <div class="alert alert-danger" *ngIf="Vauth">
-            Invalid UserName or Password ! Please try Again.....
-          </div>
+      <div class="form ">
+        <div class="form-group">
+          <input type="text" class="form-control" name="user" id="title" placeholder="Enter UserName or Email" ngModel
+            required>
+        </div>
+        <div class="form-group mt-4">
+          <input type="password" class="form-control" name="password" id="password" placeholder="Password" ngModel
+            required>
+        </div>
+        <div class="alert alert-danger" *ngIf="Vauth">
+          Invalid UserName or Password ! Please try Again.....
+        </div>
         <div class="form-group mt-5 text-center">
-            <button type="submit" class="btn btn-secondary shadow form-group mr-3">login</button>
-            <button type="reset" class="btn btn-secondary shadow form-group ml-3">Reset</button>
+          <button type="submit" class="btn btn-secondary shadow form-group mr-3">login</button>
+          <button type="reset" class="btn btn-secondary shadow form-group ml-3">Reset</button>
         </div>
       </div>
     </form>
- <!-- ------------------------------------------- -->
+    <!-- ------------------------------------------- -->
   </div>
   <!-- <p>{{ formData.value | json }}</p> -->
-</div> 
+</div>
 <!-- ------------------------------------------------------- -->
 <!-- <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
       <input name="first" ngModel required #first="ngModel">
@@ -33,4 +34,3 @@
       <button>Submit</button>
     </form>
      -->
-    

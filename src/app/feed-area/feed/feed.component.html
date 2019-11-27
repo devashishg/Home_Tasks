@@ -4,21 +4,26 @@
       <h3>{{parentData.title | title}}</h3>
     </div>
     <div class="card-body ">
-      <div class="row card-body mx-1 my-1"><img [src]="parentData.urlToImage" class="img" width="200px" height="auto" >
-        <h5 class="card-title col align-self-end">Date : {{parentData.publishedAt.split('T')[0]}}<br/>Source : {{ parentData?.source ? parentData.source.name : 'My Article'}}</h5></div>
-        <p class="card-text collapse show" aria-expanded="true" id="{{parentData.id}}">{{parentData.description | description}}</p>
-        <!-- ----------- -->
-        <div class="collapse" id="{{parentData.id}}">
-          <div class="card-body">
-            {{parentData.description}}
-          </div>
-        </div>
-        <p>
-          <a class="btn btn-primary mt-2 shadow rounded" (click)="toggleToggle()" data-toggle="collapse" href="{{'#'+parentData.id}}" role="button" aria-expanded="false" aria-controls="collapseExample">
-            <div>Read {{ expand }}</div>
-          </a>
-        </p>
-        <!-- -------------- -->
+      <div class="row card-body mx-1 my-1"><img [src]="parentData.urlToImage" class="img" width="200px" height="auto"
+          onerror="this.onerror=null;this.src='assets/missingFile.png';">
+        <h5 class="card-title col align-self-end">Date : {{parentData.publishedAt.split('T')[0]}}<br />Source :
+          {{ parentData?.source ? parentData.source.name : 'My Article'}}</h5>
       </div>
+      <p class="card-text collapse show" aria-expanded="true" id="{{parentData.id}}">
+        {{parentData.description | description}}</p>
+      <!-- ----------- -->
+      <div class="collapse" id="{{parentData.id}}">
+        <div class="card-body">
+          {{parentData.description}}
+        </div>
+      </div>
+      <p>
+        <a class="btn btn-primary mt-2 shadow rounded" (click)="toggleToggle()" data-toggle="collapse"
+          href="{{'#'+parentData.id}}" role="button" aria-expanded="false" aria-controls="collapseExample">
+          <div>Read {{ expand }}</div>
+        </a>
+      </p>
+      <!-- -------------- -->
+    </div>
   </div>
 </div>

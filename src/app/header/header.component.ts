@@ -14,17 +14,16 @@ export class HeaderComponent implements OnInit {
   }
   
   ngOnInit() {
-    //console.log(this.logInService.getStatus());
     HeaderComponent.ButtonElement = document.getElementsByTagName('button')[0];
     if(localStorage.getItem('status')==='true'){
       this.logInService.setStatus(true);
     }
-    //console.log(this.logInService.getStatus());
+
     HeaderComponent.HeaderButtonClick(this.logInService.getStatus());    
   }
 
+  
   static HeaderButtonClick(status:boolean){
-    //console.log(status);
     HeaderComponent.ButtonElement = document.getElementsByTagName('button')[0];
     if(status){
       HeaderComponent.ButtonElement.style.visibility='visible';
@@ -34,6 +33,8 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+
+  
   HeaderButtonClick(){
     this.logInService.setStatus(false);
     this.logInService.setUser('user');

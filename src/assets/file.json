@@ -1,0 +1,81 @@
+{
+    "array": [{
+            "id":"A",
+            "title":"Title One",
+            "Date":"11 October 2019",
+            "Source":"Source A",
+            "Description":"Science, crime, medicine, archaeology, nature — if it’s interesting news, you’ll find it here. Stories like these may not always be the ones atop your news feed, but chances are they’re the ones you’ll actually want to read. Whether it’s stories of weird animals, grisly crimes, interstellar drama, or the just plain unbelievable, these are the most interesting news articles you’ll find anywhere."
+        },
+        {
+            "id":"B",
+            "title":"Title Two",
+            "Date":"12 October 2019",
+            "Source":"Source C",
+            "Description":"From a nine-year-old boy’s accidental uncovering of a previously-unknown human ancestor called Australopithecus sediba to new revelations about how the Ancient Egyptian pyramids were built, interesting news stories like these represent the discoveries that unlock the secrets of humanity’s past. And in addition to uncovering our past, these interesting current events furthermore chart the course of our present — from the serious all the way down to weird news of the “Florida man” variety — and our future — from the latest technological advances to the Jupiter pictures coming back from the outer reaches of our solar system."
+        },
+        {
+            "id":"C",
+            "title":"Title Three",
+            "Date":"14 October 2019",
+            "Source":"Source D",
+            "Description":"Each Daily News Article contains comprehension and critical thinking questions, found below the article. In addition, we provide “Background” and “Resources” (including video clips, maps and links) below the questions to give students a better understanding of the news story. Sign-up to receive a FREE daily email with answers to the questions."
+        },
+        {
+            "id":"D",
+            "title":"Title Four",
+            "Date":"13 October 2019",
+            "Source":"Source A",
+            "Description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ultricies nisi sit amet elit elementum ultrices. Donec at pellentesque metus, vitae sodales orci. Phasellus posuere condimentum nulla quis dapibus. Donec et justo et velit condimentum vulputate. Phasellus condimentum suscipit leo quis interdum. Vestibulum viverra dui id mi molestie condimentum at sit amet felis. Suspendisse at leo id diam dignissim varius. Duis pellentesque lorem nec bibendum maximus"
+        },
+        {
+            "id":"E",
+            "title":"Title Five",
+            "Date":"12 October 2019",
+            "Source":"Source B",
+            "Description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ultricies nisi sit amet elit elementum ultrices. Donec at pellentesque metus, vitae sodales orci. Phasellus posuere condimentum nulla quis dapibus. Donec et justo et velit condimentum vulputate. Phasellus condimentum suscipit leo quis interdum. Vestibulum viverra dui id mi molestie condimentum at sit amet felis. Suspendisse at leo id diam dignissim varius. Duis pellentesque lorem nec bibendum maximus"
+        },
+        {
+            "id":"F",
+            "title":"Title Six",
+            "Date":"13 October 2019",
+            "Source":"Source A",
+            "Description":"SC has given verdict on the basis of evidence provided by the ASI. This is the most perfect judgment I could ever think of. I never thought it would be this perfect. I feel vindicated (he had said Ram temple existed before Babri mosque in Ayodhya), I was hounded by a group of people, said KK Muhammed, former regional director, Archaeological Survey of India."
+        },
+        {
+            "id":"G",
+            "title":"Title Seven",
+            "Date":"13 October 2019",
+            "Source":"Source C",
+            "Description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ultricies nisi sit amet elit elementum ultrices. Donec at pellentesque metus, vitae sodales orci. Phasellus posuere condimentum nulla quis dapibus. Donec et justo et velit condimentum vulputate. Phasellus condimentum suscipit leo quis interdum. Vestibulum viverra dui id mi molestie condimentum at sit amet felis. Suspendisse at leo id diam dignissim varius. Duis pellentesque lorem nec bibendum maximus"
+        },
+        {
+            "id":"H",
+            "title":"Title Eight",
+            "Date":"11 October 2019",
+            "Source":"Source A",
+            "Description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ultricies nisi sit amet elit elementum ultrices. Donec at pellentesque metus, vitae sodales orci. Phasellus posuere condimentum nulla quis dapibus. Donec et justo et velit condimentum vulputate. Phasellus condimentum suscipit leo quis interdum. Vestibulum viverra dui id mi molestie condimentum at sit amet felis. Suspendisse at leo id diam dignissim varius. Duis pellentesque lorem nec bibendum maximus"
+        },
+        {
+            "id":"I",
+            "title":"Title Nine",
+            "Date":"14 October 2019",
+            "Source":"Source D",
+            "Description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ultricies nisi sit amet elit elementum ultrices. Donec at pellentesque metus, vitae sodales orci. Phasellus posuere condimentum nulla quis dapibus. Donec et justo et velit condimentum vulputate. Phasellus condimentum suscipit leo quis interdum. Vestibulum viverra dui id mi molestie condimentum at sit amet felis. Suspendisse at leo id diam dignissim varius. Duis pellentesque lorem nec bibendum maximus"
+        },
+        {
+            "id":"J",
+            "title":"Title Ten",
+            "Date":"12 October 2019",
+            "Source":"Source B",
+            "Description":"Indian-American Abhijit Banerjee, who won the 2019 Nobel Economics Prize, said Indian economy is on a shaky ground. The data available do not hold any assurance for the country's economic revival anytime soon, he stated. In the last five-six years, at least we could witness some growth, but now that assurance is also gone, Banerjee told a US news channel."
+        },
+        {
+            "id":"K",
+            "title":"Title Eleven",
+            "Date":"14 October 2019",
+            "Source":"Source B",
+            "Description":"The former RBI head also made a dark prognosis for the economy, stating in a recent lecture that the government’s economic performance is not sustainable and that there is a risk of the country going the Latin America way in terms of populist policies. According to Rajan, “factors such as ill-conceived demonetisation and poorly executed GST” were the tipping point for the current slowdown."
+        }
+    ]
+}
+

@@ -1,0 +1,6 @@
+div#flex{
+    display:flex;background: #E6E9EE;padding: 1%;color: gray;font-size: 13px;
+}
+div#foot{
+    position: fixed;bottom : 0px;right: 4px;left: 4px;border: none;border-top: 2px solid gray;
+}

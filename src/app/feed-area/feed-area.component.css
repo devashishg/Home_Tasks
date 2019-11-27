@@ -1,0 +1,26 @@
+
+
+
+.navbar{
+    background: #dddddd;;
+}
+
+#btn{
+    background: url('../../assets/search.png') no-repeat;
+    padding: 16px;
+    background-position: center;
+}
+
+.form-control{
+    background: transparent;
+}
+
+.icon-bar {
+    background-color:#FF0000 !important;
+ }
+
+
+ div#pageTitle{
+    color: grey;
+    font-size: 20px;
+}

@@ -16,3 +16,5 @@ export const errorObject = {
 export const sourceList = ['the-times-of-india','time','the-new-york-times','My Articles',
   'the-hindu','msnbc','google-news','cnn','bbc-news','bloomberg','buzzfeed','engadget','espn','hacker-news', 'national-geographic','techradar','the-verge','wired'];
 
+export const userList = [{user:'Debian', password : 'rstuvw', role:'user'},
+  {user:'Admin', password : 'admin', role:'admin'}];  

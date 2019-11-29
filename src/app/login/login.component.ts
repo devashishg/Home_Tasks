@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { LoginServiceService } from '../Service/login-service.service';
+import { AuthService } from '../Service/auth.service';
 
 
 @Component({
@@ -10,10 +11,10 @@ import { LoginServiceService } from '../Service/login-service.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  public Vauth: boolean;
+  public flag: boolean;
 
-  constructor(private route: Router, private logInService: LoginServiceService) {
-    this.Vauth = false;
+  constructor(private route: Router, private logInService: LoginServiceService , private AuthService : AuthService) {
+    this.flag = false;
   }
 
   ngOnInit() {
@@ -27,14 +28,17 @@ export class LoginComponent implements OnInit {
    * @param formData 
    */
   onSubmit(formData) {
-    if (formData.value.user === 'debian' && formData.value.password === 'rstuvw') {
+    let response =  this.AuthService.verifyUser(formData.value);
+    if (response.status) {
       this.logInService.setStatus(true);
-      this.logInService.setUser(formData.value.user);
+      this.logInService.setUser(response.user);
+      console.log(this.logInService.getUser());
+      
       localStorage.setItem('status', 'true');
-      localStorage.setItem('user', formData.value.user);
+      localStorage.setItem('user', response.user);
       this.route.navigate(['/NewsFeeds']);
     } else {
-      this.Vauth = true;
+      this.flag = true;
     }
   }
 }

@@ -31,7 +31,7 @@
         </li>
       </ul>
       <ul class="navbar-nav ml-auto mt-1-sm">
-        <li class="nav-item ml-auto-sm">
+        <li class="nav-item ml-auto-sm" *ngIf = "user=='Admin'">
           <a class="btn btn-outline-secondary" (click)="navigate()">Add New Article</a>
         </li>
       </ul>

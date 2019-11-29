@@ -5,11 +5,13 @@ import { Injectable } from '@angular/core';
 })
 export class LoginServiceService {
   private status = 'LoggedOut';
-  public user : string = 'user';
-  constructor() { }
+  private user : string = 'user';
+  constructor() { 
+
+  }
   
   getStatus(){
-    return this.status === 'LoggedOut' ? false :true;
+    return this.status === 'LoggedOut' ? false : true;
   }
 
   setStatus( status : boolean ){

@@ -22,13 +22,18 @@ export class FeedAreaComponent implements OnInit {
   public static HeadLines;
   public static FirstLoad: boolean = true;
   public static MyArticles;
+  public user: string;
 
 
 
-  constructor(private route: Router, private DataFetchService: DataFetchService, private logInService: LoginServiceService) {
-    this.TitlePage = 'TOP HEAD LINES';
-    this.searchTerm = "";
-    this.filterTerm = "";
+  constructor(
+    private route: Router,
+    private DataFetchService: DataFetchService,
+    private logInService: LoginServiceService) {
+      this.TitlePage = 'TOP HEAD LINES';
+      this.searchTerm = "";
+      this.filterTerm = "";
+      this.user = this.logInService.getUser();
   }
 
   ngOnInit() {
@@ -39,7 +44,8 @@ export class FeedAreaComponent implements OnInit {
       this.logInService.setStatus(true);
       HeaderComponent.HeaderButtonClick(true);
     }
-    //console.log(this.logInService.getStatus());
+    this.user = this.logInService.getUser();
+    console.log(this.user);
 
     if (!this.logInService.getStatus()) {
       this.route.navigate(['/login']);

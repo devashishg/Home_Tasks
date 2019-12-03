@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild, Injectable } from '@angular/core';
 import { Router, CanDeactivate, CanActivate , ActivatedRouteSnapshot , RouterStateSnapshot} from '@angular/router';
-import { LoginServiceService } from '../Service/login-service.service';
+import { LoginServiceService } from '../Service/LoginService/login-service.service';
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import value from '*.json';
+import { LoginComponent } from '../login/login.component';
 
 
 
@@ -23,10 +24,8 @@ export class NewFeedComponent implements OnInit{
   }
 
   ngOnInit() {
-    if (!this.logInServices.getStatus()) {
-      this.route.navigate(['/login']);
-    }
     this.user = this.logInServices.getUser();
+    console.log(this.user);
 
     this.pf = new FormGroup({
       title: new FormControl('',[Validators.required, Validators.minLength(6),Validators.maxLength(50),Validators.pattern("^[a-zA-Z0-9, _.]+$")]),
@@ -71,7 +70,6 @@ export class NewFeedComponent implements OnInit{
 export class myGuard implements CanDeactivate<NewFeedComponent>{
   canDeactivate(component : NewFeedComponent): boolean  {
     console.log("Method not implemented.");
-    console.log()
     if(component.pf.dirty){
         return confirm('Changes might not saved, Sure want to continue!!');
     }

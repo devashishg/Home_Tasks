@@ -7,7 +7,8 @@ import { HttpClient } from '@angular/common/http';
 export class DataFetchService {
 
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) {
+   }
 
 
   public getNewsFeeds(url:string){

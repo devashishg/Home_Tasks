@@ -13,9 +13,12 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TitlePipe } from './Pipes/title.pipe';
 import { DescriptionPipe } from './Pipes/description.pipe';
-import { LoginServiceService } from './Service/login-service.service';
-import { AuthService } from './Service/auth.service';
-import { DataFetchService } from './Service/data-fetch.service';
+import { LoginServiceService } from './Service/LoginService/login-service.service';
+import { AuthService } from './Service/Auth/auth.service';
+import { DataFetchService } from './Service/DataFetch/data-fetch.service';
+import { AdminMenuComponent } from './admin-menu/admin-menu.component';
+import { AuthGuardService } from './Service/Auth-Guard/auth-guard.service';
+import { CommentsComponent } from './comments/comments.component';
 
 @NgModule({
   declarations: [
@@ -28,17 +31,19 @@ import { DataFetchService } from './Service/data-fetch.service';
     PageNotFoundComponent,
     LoginComponent,
     TitlePipe,
-    DescriptionPipe
+    DescriptionPipe,
+    AdminMenuComponent,
+    CommentsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,FormsModule,HttpClientModule,ReactiveFormsModule
   ],
   providers: [
-    LoginServiceService,
+    AuthGuardService,
     AuthService,
-    DataFetchService,
-    myGuard
+    DataFetchService,myGuard,
+    LoginServiceService,
   ],
   bootstrap: [AppComponent]
 })

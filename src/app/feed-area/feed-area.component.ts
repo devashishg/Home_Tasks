@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 // import countries from '../../assets/file.json';    Local file load 
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component.js';
-import { DataFetchService } from '../Service/data-fetch.service.js';
+import { DataFetchService } from '../Service/DataFetch/data-fetch.service.js';
 import { Key, errorObject, sourceList } from 'src/constants.js';
-import { LoginServiceService } from '../Service/login-service.service.js';
+import { LoginServiceService } from '../Service/LoginService/login-service.service.js';
 import { Observable, Observer } from 'rxjs';
+import { Article } from '../Model/Article.js';
 
 
 @Component({
@@ -15,14 +16,15 @@ import { Observable, Observer } from 'rxjs';
 })
 export class FeedAreaComponent implements OnInit {
   public TitlePage: String;
-  public Data;
+  public Data:Array<Article>;
   public searchTerm: String;
   public filterTerm: String;
   public SourceSet: Set < String > ;
-  public static HeadLines;
+  public static HeadLines:Array<Article>;
   public static FirstLoad: boolean = true;
   public static MyArticles;
   public user: string;
+  flag:boolean;
 
 
 
@@ -37,19 +39,23 @@ export class FeedAreaComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (!localStorage.getItem('status') || localStorage.getItem('status') === 'false') {
-      localStorage.setItem('status', 'false');
-      this.logInService.setStatus(false);
-    } else {
-      this.logInService.setStatus(true);
-      HeaderComponent.HeaderButtonClick(true);
-    }
+    // if (!localStorage.getItem('status') || localStorage.getItem('status') === 'false') {
+    //   localStorage.setItem('status', 'false');
+    //   this.logInService.setStatus(false);
+    // } else {
+    //   this.logInService.setStatus(true);
+    //   HeaderComponent.HeaderButtonClick(true);
+    // }
     this.user = this.logInService.getUser();
     console.log(this.user);
 
-    if (!this.logInService.getStatus()) {
-      this.route.navigate(['/login']);
-    }
+    this.flag = (this.user === 'Admin')
+    this.logInService.myObservable$.subscribe(obj => 
+      {this.user = obj; 
+      this.flag = (this.user === 'Admin')
+      console.log(this.user);}
+    );
+    
     this.setCreation();
     this.load(`https://newsapi.org/v2/top-headlines?country=in&apiKey=${ Key }`);
   }
@@ -57,7 +63,9 @@ export class FeedAreaComponent implements OnInit {
 
   load = (url: string) => {
     this.DataFetchService.getNewsFeeds(url).subscribe((obj: any) => {
-      this.setData(obj.articles.map((object) => {
+      console.log(obj);
+      this.setData(obj.articles.map((object:Article) => {
+        // console.log(object);
         return object.description && object.publishedAt && object.title ? object : {
           author: `${object.author ? object.author :'Error'}`,
           content: `${object.content ? object.content :'Error'}`,
@@ -76,7 +84,7 @@ export class FeedAreaComponent implements OnInit {
     });
   }
 
-  setData = (Data) => {
+  setData = (Data:Array<Article>) => {
     if (FeedAreaComponent.FirstLoad) {
       this.Data = Data;
       FeedAreaComponent.HeadLines = Data;

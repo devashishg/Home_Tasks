@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
-import { LoginServiceService } from '../Service/login-service.service';
-import { AuthService } from '../Service/auth.service';
+import { LoginServiceService } from '../Service/LoginService/login-service.service';
+import { AuthService } from '../Service/Auth/auth.service';
+import { HeaderComponent } from '../header/header.component';
 
 
 @Component({
@@ -12,9 +13,11 @@ import { AuthService } from '../Service/auth.service';
 })
 export class LoginComponent implements OnInit {
   public flag: boolean;
+  public static obj:LoginServiceService;
 
   constructor(private route: Router, private logInService: LoginServiceService , private AuthService : AuthService) {
     this.flag = false;
+    LoginComponent.obj = logInService
   }
 
   ngOnInit() {
@@ -36,7 +39,11 @@ export class LoginComponent implements OnInit {
       
       localStorage.setItem('status', 'true');
       localStorage.setItem('user', response.user);
-      this.route.navigate(['/NewsFeeds']);
+      
+      this.logInService.getUser()==='Admin' ? this.route.navigate(['/SuperUser']) : this.route.navigate(['/NewsFeeds']);
+      console.log(this.logInService.getStatus());
+      console.log("-----------"+this.logInService.getUser());
+      HeaderComponent.HeaderButtonClick(this.logInService.getStatus())
     } else {
       this.flag = true;
     }

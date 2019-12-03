@@ -1,7 +1,9 @@
-export const Key1 =  '827b0ce7adc847d499f5b4ab0d051ebc';
-export const Key = '061c1d73cc384886a562cd04566c1b58';
+import { Article } from './app/Model/Article';
 
-export const errorObject = {
+export const Key =  '827b0ce7adc847d499f5b4ab0d051ebc';
+export const Key1 = '061c1d73cc384886a562cd04566c1b58';
+
+export const errorObject:Article = {
     author: 'Error',
     content: 'Error',
     description:  'Start Creating Articles... That will shown here .',

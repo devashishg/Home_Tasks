@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginServiceService } from '../Service/login-service.service';
+import { LoginServiceService } from '../Service/LoginService/login-service.service';
 
 @Component({
   selector: 'app-header',
@@ -8,18 +8,15 @@ import { LoginServiceService } from '../Service/login-service.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  public  BouttonText:string;
+  public  BouttonText:string ="Logout";
   public static ButtonElement ;
   constructor(private route:Router , private logInService : LoginServiceService) {
+    //HeaderComponent.HeaderButtonClick(logInService.getStatus());
   }
   
   ngOnInit() {
     HeaderComponent.ButtonElement = document.getElementsByTagName('button')[0];
-    if(localStorage.getItem('status')==='true'){
-      this.logInService.setStatus(true);
-    }
-
-    HeaderComponent.HeaderButtonClick(this.logInService.getStatus());    
+    HeaderComponent.HeaderButtonClick(this.logInService.getStatus());
   }
 
   

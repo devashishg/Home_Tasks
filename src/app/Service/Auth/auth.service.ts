@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { userList } from 'src/constants';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor() { }
+  constructor(private router: Router) {
+   }
 
   verifyUser(obj){
      let userListUpdated =  userList.filter(a => a.user === obj.user).filter(b => b.password === obj.password);

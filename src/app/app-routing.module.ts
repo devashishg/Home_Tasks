@@ -4,18 +4,28 @@ import { FeedAreaComponent } from './feed-area/feed-area.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { NewFeedComponent, myGuard } from './new-feed/new-feed.component';
 import { LoginComponent } from './login/login.component';
+import { AdminMenuComponent } from './admin-menu/admin-menu.component';
+import { AuthGuardService } from './Service/Auth-Guard/auth-guard.service';
 
 
 const routes: Routes = [
   {
     path: 'NewsFeeds',
     component: FeedAreaComponent,
+    canActivate:[AuthGuardService],
     data: { title: 'NewsFeeds' }
+  },
+  {
+    path: 'SuperUser',
+    component: AdminMenuComponent,
+    canActivate:[AuthGuardService],
+    data: { title: 'Dashboard' }
   },
   {
     path: 'CreateFeed',
     component: NewFeedComponent,
     canDeactivate :[ myGuard ],
+    canActivate:[AuthGuardService],
     data: { title: 'NewsFeeds' }
   },
   {

@@ -11,9 +11,13 @@ export class FeedComponent implements OnInit {
   public toggle: boolean;
   public expand: string;
   public static vari = 0;
+  public comments=['Nice Job !','Thanks for the update :) '];
+  public commentsToShow;
 
   constructor() {
+    //console.log(this.comments.length)
     this.toggle = true;
+    this.commentsToShow = ` ${ this.comments.length } Comments below ...`;
   }
 
   ngOnInit() {

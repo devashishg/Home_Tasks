@@ -77,3 +77,16 @@ export class myGuard implements CanDeactivate<NewFeedComponent>{
   }
   
 }
+
+
+@Injectable()
+export class Restrict implements CanActivate{
+  constructor(private Auth :  LoginServiceService , private route :Router) {  }
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    if(this.Auth.getUser()==='Admin'){
+      return true;
+    }
+    this.route.navigate(['/NewsFeeds']);
+    return false;
+  }
+}

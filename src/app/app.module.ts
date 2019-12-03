@@ -7,7 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { FeedAreaComponent } from './feed-area/feed-area.component';
 import { FeedComponent } from './feed-area/feed/feed.component';
-import { NewFeedComponent, myGuard } from './new-feed/new-feed.component';
+import { NewFeedComponent, myGuard, Restrict } from './new-feed/new-feed.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -43,7 +43,7 @@ import { CommentsComponent } from './comments/comments.component';
     AuthGuardService,
     AuthService,
     DataFetchService,myGuard,
-    LoginServiceService,
+    LoginServiceService,Restrict
   ],
   bootstrap: [AppComponent]
 })

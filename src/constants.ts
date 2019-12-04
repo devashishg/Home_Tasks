@@ -20,3 +20,5 @@ export const sourceList = ['the-times-of-india','time','the-new-york-times','My 
 
 export const userList = [{user:'Debian', password : 'rstuvw', role:'user'},
   {user:'Admin', password : 'admin', role:'admin'}];  
+
+export const CommentsList = ['Nice Job !','Thanks for the update :) '];

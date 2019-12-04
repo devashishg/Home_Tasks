@@ -1,4 +1,5 @@
 import { Component, OnInit ,Input } from '@angular/core';
+import { CommentsList } from 'src/constants';
 
 @Component({
   selector: 'app-feed',
@@ -11,7 +12,7 @@ export class FeedComponent implements OnInit {
   public toggle: boolean;
   public expand: string;
   public static vari = 0;
-  public comments=['Nice Job !','Thanks for the update :) '];
+  public comments= CommentsList;
   public commentsToShow;
 
   constructor() {

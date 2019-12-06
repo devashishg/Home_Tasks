@@ -35,27 +35,12 @@ export class FeedAreaComponent implements OnInit {
       this.TitlePage = 'TOP HEAD LINES';
       this.searchTerm = "";
       this.filterTerm = "";
-      this.user = this.logInService.getUser();
+      //this.user = this.logInService.getUser();
   }
 
   ngOnInit() {
-    // if (!localStorage.getItem('status') || localStorage.getItem('status') === 'false') {
-    //   localStorage.setItem('status', 'false');
-    //   this.logInService.setStatus(false);
-    // } else {
-    //   this.logInService.setStatus(true);
-    //   HeaderComponent.HeaderButtonClick(true);
-    // }
     this.user = this.logInService.getUser();
-    console.log(this.user);
-
     this.flag = (this.user === 'Admin')
-    this.logInService.myObservable$.subscribe(obj => 
-      {this.user = obj; 
-      this.flag = (this.user === 'Admin')
-      console.log(this.user);}
-    );
-    
     this.setCreation();
     this.load(`https://newsapi.org/v2/top-headlines?country=in&apiKey=${ Key }`);
   }

@@ -22,3 +22,5 @@ export const userList = [{user:'Debian', password : 'rstuvw', role:'user'},
   {user:'Admin', password : 'admin', role:'admin'}];  
 
 export const CommentsList = ['Nice Job !','Thanks for the update :) '];
+
+export let jsonData = {user:'',status:''};

@@ -1,6 +1,5 @@
 import { Injectable, ComponentFactoryResolver } from '@angular/core';
-import { HeaderComponent } from 'src/app/header/header.component';
-import { Observable, Observer } from 'rxjs';
+import { jsonData } from '../../../constants';
 
 
 @Injectable({
@@ -8,40 +7,31 @@ import { Observable, Observer } from 'rxjs';
 })
 export class LoginServiceService {
   
-  myObservable$ = new Observable((observer: Observer < string > ) => {
-    observer.next(this.user);
-  });
-
-  private status = 'LoggedOut';
-  private user : string = 'user';
   constructor() { 
-    console.log('hello');
     if (!localStorage.getItem('status') || localStorage.getItem('status') === 'false') {
       localStorage.setItem('status', 'false');
       this.setStatus(false);
     } else {
       this.setStatus(true);
     }
-
     if(localStorage.getItem('user')){
       this.setUser(localStorage.getItem('user'));
-      console.log(`------------------${this.getUser()}----------------`)
     }
     
   }
 
   getStatus(){
-    return this.status === 'LoggedOut' ? false : true;
+    return jsonData.status === 'LoggedOut' ? false : true;
   }
 
   setStatus( status : boolean ){
-    this.status = status ? 'LoggedIn' : 'LoggedOut';
+    jsonData.status = status ? 'LoggedIn' : 'LoggedOut';
     localStorage.setItem('status',(status ? 'true' : 'false'));
   }
   setUser(name : string){
-    this.user = name;
+    jsonData.user = name;
   }
   getUser(){
-    return this.user;
+    return jsonData.user;
   }
 }

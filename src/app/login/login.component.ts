@@ -41,8 +41,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('user', response.user);
       
       this.logInService.getUser()==='Admin' ? this.route.navigate(['/SuperUser']) : this.route.navigate(['/NewsFeeds']);
-      console.log(this.logInService.getStatus());
-      console.log("-----------"+this.logInService.getUser());
+
       HeaderComponent.HeaderButtonClick(this.logInService.getStatus())
     } else {
       this.flag = true;

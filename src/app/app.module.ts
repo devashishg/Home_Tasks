@@ -44,7 +44,7 @@ import { RestrictUser } from './Service/Restrict-Guard/Restrict-guard.service';
     AuthGuardService,
     AuthService,
     DataFetchService,myGuard,
-    LoginServiceService,RestrictUser
+    LoginServiceService,RestrictUser,
   ],
   bootstrap: [AppComponent]
 })

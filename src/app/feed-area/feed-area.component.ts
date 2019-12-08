@@ -16,12 +16,10 @@ import { Article } from '../Model/Article.js';
 })
 export class FeedAreaComponent implements OnInit {
   public TitlePage: String;
-  public Data:Array<Article>;
+  public Data:Array<Article>;   
   public searchTerm: String;
   public filterTerm: String;
   public SourceSet: Set < String > ;
-  public static HeadLines:Array<Article>;
-  public static FirstLoad: boolean = true;
   public static MyArticles;
   public user: string;
   flag:boolean;
@@ -42,13 +40,13 @@ export class FeedAreaComponent implements OnInit {
     this.user = this.logInService.getUser();
     this.flag = (this.user === 'Admin')
     this.setCreation();
-    this.load(`https://newsapi.org/v2/top-headlines?country=in&apiKey=${ Key }`);
+    this.load(`https://newsapi.org/v2/top-headlines?country=in&apiKey=${ Key }`,'Top Head Lines');
   }
 
 
-  load = (url: string) => {
+  load = (url: string,source: string) => {
     this.DataFetchService.getNewsFeeds(url).subscribe((obj: any) => {
-      console.log(obj);
+      // console.log(obj);
       this.setData(obj.articles.map((object:Article) => {
         // console.log(object);
         return object.description && object.publishedAt && object.title ? object : {
@@ -65,18 +63,14 @@ export class FeedAreaComponent implements OnInit {
           url: `${object.url ? object.url :'Error'}`,
           urlToImage: object.urlToImage ? object.urlToImage : 'assets/missingFile.png'
         }
-      }));
+      }),source);
     });
   }
 
-  setData = (Data:Array<Article>) => {
-    if (FeedAreaComponent.FirstLoad) {
+  setData = (Data:Array<Article>,source: string) => {
+
+      sessionStorage.setItem(source,JSON.stringify(Data));
       this.Data = Data;
-      FeedAreaComponent.HeadLines = Data;
-      FeedAreaComponent.FirstLoad = !FeedAreaComponent.FirstLoad;
-    } else {
-      this.Data = Data;
-    }
   }
 
   sourceLoad = (source) => {
@@ -92,16 +86,15 @@ export class FeedAreaComponent implements OnInit {
       this.TitlePage = value;
     })
     //----------------------------
-    if (source === 'Top Head Lines') {
-      this.Data = FeedAreaComponent.HeadLines;
-      this.TitlePage = 'TOP HEAD LINES';
-    } else if (source === 'My Articles') {
+    if (source === 'My Articles') {
       if (!FeedAreaComponent.MyArticles) {
         FeedAreaComponent.MyArticles = [errorObject];
       }
       this.Data = FeedAreaComponent.MyArticles;
-    } else {
-      this.load(`https://newsapi.org/v2/top-headlines?sources=${source}&apiKey=${Key}`);
+    } else if(!sessionStorage.getItem(source)) {
+      this.load(`https://newsapi.org/v2/top-headlines?sources=${source}&apiKey=${Key}`,source);
+    }else{
+      this.Data = JSON.parse(sessionStorage.getItem(source));
     }
   }
 

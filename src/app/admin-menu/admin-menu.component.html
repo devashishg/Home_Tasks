@@ -7,7 +7,7 @@
     <div class="row h3 my-3">
         <div class="col-md my-4">
             <div class="color-block m-3 px-auto corner-radius-1 border-left rounded-right text-white py-5 text-center  shadow"
-                style="background: linear-gradient(to top left, #00b7ff -15%, #ff6666 115%);"> <a [routerLink]="['/']">
+                style="background: linear-gradient(to top left, #00b7ff -15%, #ff6666 115%);"> <a [routerLink]="['/SuperUser']">
                     <i class="fa fa-id-card" aria-hidden="true"></i> Dashboard</a></div></div>
         <div class="col-md my-4">
             <div class="color-block m-3 px-auto corner-radius-1 border-left rounded-right text-white  py-5 text-center  shadow"
@@ -21,7 +21,7 @@
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Create Article </a></div></div>
         <div class="col-md my-4">
             <div class="color-block m-3 px-auto corner-radius-1 border-left rounded-right  text-white  py-5 text-center shadow"
-                style="background: linear-gradient(to top left, #c3e664 -15%, #a091e5 115%); "><a [routerLink]="['/CreateFeed']">
+                style="background: linear-gradient(to top left, #c3e664 -15%, #a091e5 115%); "><a [routerLink]="['/NewsFeeds']" [state]="{ data : 1 }">
                     <i class="fa fa-paperclip" aria-hidden="true"></i> My Articles </a></div>
          
     </div>

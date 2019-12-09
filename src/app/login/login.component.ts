@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     if (response.status) {
       this.logInService.setStatus(true);
       this.logInService.setUser(response.user);
-      console.log(this.logInService.getUser());
+      // console.log(this.logInService.getUser());
       
       localStorage.setItem('status', 'true');
       localStorage.setItem('user', response.user);

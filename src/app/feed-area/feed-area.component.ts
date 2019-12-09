@@ -22,6 +22,7 @@ export class FeedAreaComponent implements OnInit {
   public SourceSet: Set < String > ;
   public static MyArticles;
   public user: string;
+  public userFlag: any;
   flag:boolean;
 
 
@@ -33,14 +34,23 @@ export class FeedAreaComponent implements OnInit {
       this.TitlePage = 'TOP HEAD LINES';
       this.searchTerm = "";
       this.filterTerm = "";
+      this.userFlag = history.state.data
+      // console.log(this.userFlag);
+      
       //this.user = this.logInService.getUser();
   }
 
   ngOnInit() {
+
     this.user = this.logInService.getUser();
     this.flag = (this.user === 'Admin')
     this.setCreation();
-    this.load(`https://newsapi.org/v2/top-headlines?country=in&apiKey=${ Key }`,'Top Head Lines');
+    if(this.userFlag){
+      this.sourceLoad('My Articles');
+    }else{
+      this.load(`https://newsapi.org/v2/top-headlines?country=in&apiKey=${ Key }`,'Top Head Lines');
+    }
+    
   }
 
 

@@ -1,13 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { FeedAreaComponent } from './feed-area/feed-area.component';
 import { FeedComponent } from './feed-area/feed/feed.component';
-import { NewFeedComponent, myGuard } from './new-feed/new-feed.component';
+import { NewFeedComponent, MyGuard } from './new-feed/new-feed.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -38,13 +38,13 @@ import { RestrictUser } from './Service/Restrict-Guard/Restrict-guard.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,FormsModule,HttpClientModule,ReactiveFormsModule
+    AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule
   ],
   providers: [
     AuthGuardService,
     AuthService,
-    DataFetchService,myGuard,
-    LoginServiceService,RestrictUser,
+    DataFetchService, MyGuard,
+    LoginServiceService, RestrictUser,
   ],
   bootstrap: [AppComponent]
 })

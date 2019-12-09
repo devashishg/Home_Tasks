@@ -10,8 +10,8 @@ export class AuthService {
   constructor(private router: Router) {
    }
 
-  verifyUser(obj){
-     let userListUpdated =  userList.filter(a => a.user === obj.user).filter(b => b.password === obj.password);
+  verifyUser(obj) {
+     const userListUpdated =  userList.filter(a => a.user === obj.user).filter(b => b.password === obj.password);
      return userListUpdated.length === 0 ? {status : false, user: 'None'} : {status : true, user: obj.user} ;
   }
 }

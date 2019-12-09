@@ -8,31 +8,27 @@ import { LoginServiceService } from '../Service/LoginService/login-service.servi
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  public  BouttonText:string ="Logout";
   public static ButtonElement ;
-  constructor(private route:Router , private logInService : LoginServiceService) {
-    //HeaderComponent.HeaderButtonClick(logInService.getStatus());
+  public  BouttonText = 'Logout';
+  constructor(private route: Router , private logInService: LoginServiceService) {
+    // HeaderComponent.HeaderButtonClick(logInService.getStatus());
   }
-  
+  static HeaderButtonClick(status: boolean) {
+    HeaderComponent.ButtonElement = document.getElementsByTagName('button')[0];
+    if (status) {
+      HeaderComponent.ButtonElement.style.visibility = 'visible';
+      document.getElementsByTagName('button')[0].innerHTML = 'Logout';
+    } else {
+      HeaderComponent.ButtonElement.style.visibility = 'hidden';
+    }
+  }
+
   ngOnInit() {
     HeaderComponent.ButtonElement = document.getElementsByTagName('button')[0];
     HeaderComponent.HeaderButtonClick(this.logInService.getStatus());
   }
 
-  
-  static HeaderButtonClick(status:boolean){
-    HeaderComponent.ButtonElement = document.getElementsByTagName('button')[0];
-    if(status){
-      HeaderComponent.ButtonElement.style.visibility='visible';
-      document.getElementsByTagName('button')[0].innerHTML="Logout";
-    }else{
-      HeaderComponent.ButtonElement.style.visibility='hidden';
-    }
-  }
-
-
-  
-  HeaderButtonClick(){
+  HeaderButtonClick() {
     this.logInService.setStatus(false);
     this.logInService.setUser('user');
     HeaderComponent.HeaderButtonClick(false);

@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class AdminMenuComponent implements OnInit {
 
   constructor() { }
-  title:string = "Dashboard"
+  title = 'Dashboard';
   ngOnInit() {
   }
 

@@ -7,7 +7,7 @@ export class DescriptionPipe implements PipeTransform {
 
   transform(value: any, ...args: any[]): any {
     if (value !== 'Server Error') {
-      let dummy = value.substring(0, 150).split(' ');
+      const dummy = value.substring(0, 150).split(' ');
       dummy.pop();
       return dummy.join(' ') + '....';
     } else {

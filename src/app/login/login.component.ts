@@ -12,12 +12,12 @@ import { HeaderComponent } from '../header/header.component';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  public static obj: LoginServiceService;
   public flag: boolean;
-  public static obj:LoginServiceService;
 
-  constructor(private route: Router, private logInService: LoginServiceService , private AuthService : AuthService) {
+  constructor(private route: Router, private logInService: LoginServiceService , private AuthS: AuthService) {
     this.flag = false;
-    LoginComponent.obj = logInService
+    LoginComponent.obj = logInService;
   }
 
   ngOnInit() {
@@ -26,23 +26,20 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  /**
-   * Function called on submition of form
-   * @param formData 
-   */
+
   onSubmit(formData) {
-    let response =  this.AuthService.verifyUser(formData.value);
+    const response =  this.AuthS.verifyUser(formData.value);
     if (response.status) {
       this.logInService.setStatus(true);
       this.logInService.setUser(response.user);
       // console.log(this.logInService.getUser());
-      
+
       localStorage.setItem('status', 'true');
       localStorage.setItem('user', response.user);
-      
-      this.logInService.getUser()==='Admin' ? this.route.navigate(['/SuperUser']) : this.route.navigate(['/NewsFeeds']);
 
-      HeaderComponent.HeaderButtonClick(this.logInService.getStatus())
+      this.logInService.getUser() === 'Admin' ? this.route.navigate(['/SuperUser']) : this.route.navigate(['/NewsFeeds']);
+
+      HeaderComponent.HeaderButtonClick(this.logInService.getStatus());
     } else {
       this.flag = true;
     }

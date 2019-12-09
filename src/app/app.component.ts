@@ -6,15 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit{
-  public  user:string;
+export class AppComponent implements OnInit {
+  public  user: string;
+  title = 'HomeTasks';
 
   constructor() {
   }
 
-  ngOnInit(){
-    
+  ngOnInit() {
   }
-  
-  title = 'HomeTasks';
 }

@@ -1,0 +1,29 @@
+<div class="sticky-top">
+    <nav class="navbar  mx-auto ">
+      <div id="pageTitle" class="nav-item mx-auto p-2 text-secondary h4">{{ title }}</div>
+    </nav>
+  </div>
+  <div class="container" style="margin-bottom:70px;">
+    <div class="row h3 my-3">
+        <div class="col-md my-4">
+            <div class="color-block m-3 px-auto corner-radius-1 border-left rounded-right text-white py-5 text-center  shadow"
+                style="background: linear-gradient(to top left, #00b7ff -15%, #ff6666 115%);"> <a [routerLink]="['/SuperUser']">
+                    <i class="fa fa-id-card" aria-hidden="true"></i> Dashboard</a></div></div>
+        <div class="col-md my-4">
+            <div class="color-block m-3 px-auto corner-radius-1 border-left rounded-right text-white  py-5 text-center  shadow"
+                style="background: linear-gradient(to top left, #00ffcc -15%, #990000 115%);" > <a [routerLink]="['/NewsFeeds']">
+                    <i class="fa fa-bookmark-o" aria-hidden="true"></i> News Feeds</a></div></div>
+    </div>
+    <div class="row h3 my-3">
+        <div class="col-md my-4">
+            <div class="color-block m-3 px-auto corner-radius-1 border-left rounded-right  text-white  py-5 text-center shadow"
+                style="background: linear-gradient(to top left, #68e664 -15%, #e591d7 115%); "><a [routerLink]="['/CreateFeed']">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Create Article </a></div></div>
+        <div class="col-md my-4">
+            <div class="color-block m-3 px-auto corner-radius-1 border-left rounded-right  text-white  py-5 text-center shadow"
+                style="background: linear-gradient(to top left, #c3e664 -15%, #a091e5 115%); "><a [routerLink]="['/NewsFeeds']" [state]="{ data : 1 }">
+                    <i class="fa fa-paperclip" aria-hidden="true"></i> My Articles </a></div>
+         
+    </div>
+  </div>
+  

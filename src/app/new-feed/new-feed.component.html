@@ -1,0 +1,90 @@
+<div class="sticky-top">
+  <nav class="navbar ">
+    <div id="pageTitle" class="nav-item mx-auto"> Create News Article</div>
+  </nav>
+</div>
+
+<div class="text-secondary pl-2 pt-2"><a (click)="navigateBack()"><i class="fa fa-long-arrow-left" style="font-size:12px;"></i> Back</a></div>
+
+
+<div class='container' style="margin-bottom:70px;margin-top:50px;">
+  <div class="card mt-2 shadow p-3 mb-5 bg-white rounded">
+    <!-- ------------------------------------------------------------------------ -->
+    <form class="card-body"  [formGroup]="pf" (ngSubmit)="FormSubmit()" >
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="title">Heading</label>
+          <input type="text" formControlName='title' class="form-control" id="title"  autocomplete="off" >
+
+          <div *ngIf="pf.controls.title.invalid && pf.controls.title.touched" class="text-danger">
+            <span *ngIf="pf.controls.title.errors.required">Heading is Required...<br/></span>
+            <span *ngIf="pf.controls.title.errors.pattern">Special Characters are not allowed.... <br/></span>
+            <span *ngIf="pf.controls.title.errors.minlength">Min 6 characters are required <br/></span>
+          </div>
+          
+        </div>
+        <div class="form-group col-md-6">
+          <label for="date">Date</label>
+          <input type="date" formControlName='publishedAt' class="form-control" id="date">
+          <div *ngIf="pf.controls.publishedAt.invalid && pf.controls.publishedAt.touched" class="text-danger" >
+              <span >Please select date...<br/></span>
+            </div>
+        </div>
+
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="ShrtDesc">Short Description</label>
+          <input type="text" formControlName='ShortDesc' class="form-control" id="ShrtDesc" autocomplete="off" />
+
+          <div *ngIf="pf.controls.ShortDesc.invalid && pf.controls.ShortDesc.touched" class="text-danger">
+              <span *ngIf="pf.controls.ShortDesc.errors.required">Please provide short description...<br/></span>
+              <span *ngIf="pf.controls.ShortDesc.errors.minlength || pf.controls.ShortDesc.errors.maxlength">Short desc. must have min 15 amd max 100 characters... <br/></span>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="author">Author</label>
+          <input type="text" formControlName='Author' class="form-control" id="author" [readOnly] = "true">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="Desc">Description</label>
+          <textarea formControlName='description' class="form-control" id="Desc" ></textarea>
+
+          <div *ngIf="pf.controls.description.invalid && pf.controls.description.touched" class="text-danger">
+              <span *ngIf="pf.controls.description.errors.required">Please describe the news ...<br/></span>
+              <span *ngIf="pf.controls.description.errors.minlength">Description must have min 20 characters... <br/></span>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="url">Source URL</label>
+          <input type="url" formControlName='url' class="form-control" id="url"  placeholder="https://example.com">
+           <div *ngIf="pf.controls.url.invalid && pf.controls.url.touched || pf.controls.url.errors?.pattern" class="text-danger">
+              <span>Invalid Url... <br/></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="Desc">Image Url</label>
+          <input type="url" formControlName='urlToImage' class="form-control" id="url" placeholder="https://example.com">
+          <div *ngIf="pf.controls.urlToImage.invalid && pf.controls.urlToImage.touched || pf.controls.urlToImage.errors?.pattern" class="text-danger">
+              <span>Invalid Url... <br/></span>
+          </div>
+        </div>
+        <div class="form-row form-group col-md-6">
+          <div class="mx-auto"> 
+            <button type="submit" class="btn btn-secondary shadow form-group mr-2" [disabled] = "!pf.valid">Save</button>
+            <button type="button" class="btn btn-secondary shadow form-group ml-2" (click) = "resetForm()">
+            Reset</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <!-- ------------------------------------------------------------------------ -->
+  </div>
+</div>
